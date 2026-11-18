@@ -1,39 +1,262 @@
 [
- {"id":"pt-brigadeiro","lang":"pt",
-  "caption":"Quanto custa de verdade um brigadeiro? 🍫\n\nA maioria das confeiteiras soma só os ingredientes e esquece o próprio tempo e as contas do mês. Numa receita de 25 brigadeiros gourmet, o custo real fica em R$ 2,57 por unidade.\n\nQuem vende a R$ 2,50 está pagando para trabalhar.\n\nFaça a conta da sua receita de graça no Margo 👉 rodv198784-netizen.github.io/margo\n\n#confeitaria #brigadeirogourmet #docesgourmet #precificacao #confeitariaafetiva #empreendedorismofeminino #doceria",
-  "slides":[
-   {"kicker":"Confeitaria · preço","h1":"Quanto custa de verdade um brigadeiro?","p":"Spoiler: não é só o leite condensado."},
-   {"h2":"Receita de 25 unidades","rows":[["Ingredientes","R$ 1,14"],["Seu trabalho (1h30)","R$ 1,20"],["Contas fixas do mês","R$ 0,15"],["Gás e luz","R$ 0,08"],["Custo real por unidade","R$ 2,57","total"]]},
-   {"h2":"Vende a R$ 2,50?","rows":[["Você perde por unidade","− R$ 0,07","bad"],["Preço com 30% de lucro","R$ 3,68","ok"]],"p":"Cobrar barato não é ser boazinha. É pagar para trabalhar."},
-   {"dark":true,"kicker":"Grátis","h2":"Descubra o custo real da sua receita em 5 minutos","cta":"Link na bio → Margo"}]},
- {"id":"pt-esquecidos","lang":"pt",
-  "caption":"4 custos que quase toda confeiteira esquece de cobrar 👇\n\nCentavo por centavo, eles viram centenas de reais no fim do mês. Salve este post para revisar seus preços.\n\nO Margo inclui todos eles automaticamente, e é grátis para começar 👉 rodv198784-netizen.github.io/margo\n\n#confeitaria #precificacao #bolosdecorados #docesfinos #confeitariaemcasa #empreendedora",
-  "slides":[
-   {"kicker":"Salve este post","h1":"4 custos que você esquece de cobrar"},
-   {"big":"1","h2":"Embalagem","p":"Forminha, caixa, fita, saquinho, etiqueta. Some tudo por unidade."},
-   {"big":"2","h2":"Gás e energia","p":"Forno ligado 40 minutos tem preço. Divida pela receita."},
-   {"big":"3","h2":"Seu tempo","p":"Decide quanto vale sua hora e cobre por ela. Seu trabalho é custo."},
-   {"big":"4","h2":"Contas do mês","p":"Internet, MEI, aplicativo, manutenção: divida pelas horas que você trabalha."},
-   {"dark":true,"kicker":"Grátis","h2":"O Margo soma os 4 por você","cta":"Link na bio → Margo"}]},
- {"id":"pt-margem","lang":"pt",
-  "caption":"Margem ou markup? A diferença parece pequena, mas mexe no seu bolso 💸\n\nColocar 30% em cima do custo NÃO dá 30% de lucro. Dá 23%.\n\nNo Margo você escolhe o lucro que quer ter e ele calcula o preço do jeito certo 👉 rodv198784-netizen.github.io/margo\n\n#precificacao #confeitaria #financasparaempreendedores #docesgourmet #bolodepote",
-  "slides":[
-   {"kicker":"Erro comum","h1":"30% em cima do custo não é 30% de lucro"},
-   {"h2":"Custo do bolo: R$ 10","rows":[["Markup de 30%","R$ 13,00"],["Lucro real","23% do preço","bad"],["Margem de 30%","R$ 14,29"],["Lucro real","30% do preço","ok"]]},
-   {"h2":"A conta certa","p":"Preço = custo ÷ (1 − lucro desejado)<br><br>R$ 10 ÷ 0,70 = R$ 14,29"},
-   {"dark":true,"kicker":"Grátis","h2":"Deixe o Margo fazer essa conta por você","cta":"Link na bio → Margo"}]},
- {"id":"es-cupcakes","lang":"es",
-  "caption":"¿Cuánto cuesta de verdad una docena de cupcakes? 🧁\n\nSi solo sumas los ingredientes, te estás olvidando de tu tiempo, el empaque y los gastos del mes. Haz la cuenta de tu receta gratis con Margo 👉 rodv198784-netizen.github.io/margo/?lang=es\n\n#reposteria #cupcakes #emprendedoras #postres #reposteriacasera #precios",
-  "slides":[
-   {"kicker":"Repostería · precios","h1":"¿Cuánto cuesta de verdad una docena de cupcakes?"},
-   {"h2":"Docena de cupcakes","rows":[["Ingredientes","$7.80"],["Tu trabajo (75 min)","$7.50"],["Empaque","$1.20"],["Gastos fijos del mes","$0.90"],["Costo real","$17.40","total"]]},
-   {"h2":"¿La vendes a $15?","rows":[["Pierdes por docena","− $2.40","bad"],["Precio con 30% de ganancia","$24.86","ok"]],"p":"Cobrar barato no es ser amable. Es pagar por trabajar."},
-   {"dark":true,"kicker":"Gratis","h2":"Descubre el costo real de tu receta en 5 minutos","cta":"Link en la bio → Margo"}]},
- {"id":"en-cookies","lang":"en",
-  "caption":"Are you losing money on every cookie? 🍪\n\nMost home bakers count the flour and butter, then forget their own time. On a batch of 24, the true cost is $1.67 per cookie. Sell at $1.50 and you lose $2.04 on every dozen.\n\nWork out your real numbers free with Margo 👉 rodv198784-netizen.github.io/margo/?lang=en\n\n#homebaker #cottagebakery #cookiebusiness #bakingbusiness #pricingtips #smallbusiness",
-  "slides":[
-   {"kicker":"Home bakers","h1":"Are you losing money on every cookie?"},
-   {"h2":"Batch of 24 cookies","rows":[["Ingredients","$0.40"],["Your labor (90 min)","$1.12"],["Packaging","$0.15"],["True cost per cookie","$1.67","total"]]},
-   {"h2":"Selling at $1.50?","rows":[["You lose per dozen","− $2.04","bad"],["Price for 30% profit","$2.39","ok"]],"p":"Your time is a cost. Charge for it."},
-   {"dark":true,"kicker":"Free","h2":"Find your true cost in 5 minutes","cta":"Link in bio → Margo"}]}
+ {
+  "id": "pt-brigadeiro",
+  "lang": "pt",
+  "caption": "Quanto custa de verdade um brigadeiro? 🍫\n\nA maioria das confeiteiras soma só os ingredientes e esquece o próprio tempo e as contas do mês. Numa receita de 25 brigadeiros gourmet, o custo real fica em R$ 2,57 por unidade.\n\nQuem vende a R$ 2,50 está pagando para trabalhar.\n\nFaça a conta da sua receita de graça no Margo 👉 rodv198784-netizen.github.io/margo\n\n#confeitaria #brigadeirogourmet #docesgourmet #precificacao #confeitariaafetiva #empreendedorismofeminino #doceria",
+  "slides": [
+   {
+    "kicker": "Confeitaria · preço",
+    "h1": "Quanto custa de verdade um brigadeiro?",
+    "p": "Spoiler: não é só o leite condensado."
+   },
+   {
+    "h2": "Receita de 25 unidades",
+    "rows": [
+     [
+      "Ingredientes",
+      "R$ 1,14"
+     ],
+     [
+      "Seu trabalho (1h30)",
+      "R$ 1,20"
+     ],
+     [
+      "Contas fixas do mês",
+      "R$ 0,15"
+     ],
+     [
+      "Gás e luz",
+      "R$ 0,08"
+     ],
+     [
+      "Custo real por unidade",
+      "R$ 2,57",
+      "total"
+     ]
+    ]
+   },
+   {
+    "h2": "Vende a R$ 2,50?",
+    "rows": [
+     [
+      "Você perde por unidade",
+      "− R$ 0,07",
+      "bad"
+     ],
+     [
+      "Preço com 30% de lucro",
+      "R$ 3,68",
+      "ok"
+     ]
+    ],
+    "p": "Cobrar barato não é ser boazinha. É pagar para trabalhar."
+   },
+   {
+    "dark": true,
+    "kicker": "Grátis",
+    "h2": "Descubra o custo real da sua receita em 5 minutos",
+    "cta": "Teste grátis no site ↑",
+    "p": "<span style=\"font:700 34px Inter;color:#FDBA8C;word-break:break-all\">rodv198784-netizen.github.io/margo</span>"
+   }
+  ]
+ },
+ {
+  "id": "pt-esquecidos",
+  "lang": "pt",
+  "caption": "4 custos que quase toda confeiteira esquece de cobrar 👇\n\nCentavo por centavo, eles viram centenas de reais no fim do mês. Salve este post para revisar seus preços.\n\nO Margo inclui todos eles automaticamente, e é grátis para começar 👉 rodv198784-netizen.github.io/margo\n\n#confeitaria #precificacao #bolosdecorados #docesfinos #confeitariaemcasa #empreendedora",
+  "slides": [
+   {
+    "kicker": "Salve este post",
+    "h1": "4 custos que você esquece de cobrar"
+   },
+   {
+    "big": "1",
+    "h2": "Embalagem",
+    "p": "Forminha, caixa, fita, saquinho, etiqueta. Some tudo por unidade."
+   },
+   {
+    "big": "2",
+    "h2": "Gás e energia",
+    "p": "Forno ligado 40 minutos tem preço. Divida pela receita."
+   },
+   {
+    "big": "3",
+    "h2": "Seu tempo",
+    "p": "Decide quanto vale sua hora e cobre por ela. Seu trabalho é custo."
+   },
+   {
+    "big": "4",
+    "h2": "Contas do mês",
+    "p": "Internet, MEI, aplicativo, manutenção: divida pelas horas que você trabalha."
+   },
+   {
+    "dark": true,
+    "kicker": "Grátis",
+    "h2": "O Margo soma os 4 por você",
+    "cta": "Teste grátis no site ↑",
+    "p": "<span style=\"font:700 34px Inter;color:#FDBA8C;word-break:break-all\">rodv198784-netizen.github.io/margo</span>"
+   }
+  ]
+ },
+ {
+  "id": "pt-margem",
+  "lang": "pt",
+  "caption": "Margem ou markup? A diferença parece pequena, mas mexe no seu bolso 💸\n\nColocar 30% em cima do custo NÃO dá 30% de lucro. Dá 23%.\n\nNo Margo você escolhe o lucro que quer ter e ele calcula o preço do jeito certo 👉 rodv198784-netizen.github.io/margo\n\n#precificacao #confeitaria #financasparaempreendedores #docesgourmet #bolodepote",
+  "slides": [
+   {
+    "kicker": "Erro comum",
+    "h1": "30% em cima do custo não é 30% de lucro"
+   },
+   {
+    "h2": "Custo do bolo: R$ 10",
+    "rows": [
+     [
+      "Markup de 30%",
+      "R$ 13,00"
+     ],
+     [
+      "Lucro real",
+      "23% do preço",
+      "bad"
+     ],
+     [
+      "Margem de 30%",
+      "R$ 14,29"
+     ],
+     [
+      "Lucro real",
+      "30% do preço",
+      "ok"
+     ]
+    ]
+   },
+   {
+    "h2": "A conta certa",
+    "p": "Preço = custo ÷ (1 − lucro desejado)<br><br>R$ 10 ÷ 0,70 = R$ 14,29"
+   },
+   {
+    "dark": true,
+    "kicker": "Grátis",
+    "h2": "Deixe o Margo fazer essa conta por você",
+    "cta": "Teste grátis no site ↑",
+    "p": "<span style=\"font:700 34px Inter;color:#FDBA8C;word-break:break-all\">rodv198784-netizen.github.io/margo</span>"
+   }
+  ]
+ },
+ {
+  "id": "es-cupcakes",
+  "lang": "es",
+  "caption": "¿Cuánto cuesta de verdad una docena de cupcakes? 🧁\n\nSi solo sumas los ingredientes, te estás olvidando de tu tiempo, el empaque y los gastos del mes. Haz la cuenta de tu receta gratis con Margo 👉 rodv198784-netizen.github.io/margo/?lang=es\n\n#reposteria #cupcakes #emprendedoras #postres #reposteriacasera #precios",
+  "slides": [
+   {
+    "kicker": "Repostería · precios",
+    "h1": "¿Cuánto cuesta de verdad una docena de cupcakes?"
+   },
+   {
+    "h2": "Docena de cupcakes",
+    "rows": [
+     [
+      "Ingredientes",
+      "$7.80"
+     ],
+     [
+      "Tu trabajo (75 min)",
+      "$7.50"
+     ],
+     [
+      "Empaque",
+      "$1.20"
+     ],
+     [
+      "Gastos fijos del mes",
+      "$0.90"
+     ],
+     [
+      "Costo real",
+      "$17.40",
+      "total"
+     ]
+    ]
+   },
+   {
+    "h2": "¿La vendes a $15?",
+    "rows": [
+     [
+      "Pierdes por docena",
+      "− $2.40",
+      "bad"
+     ],
+     [
+      "Precio con 30% de ganancia",
+      "$24.86",
+      "ok"
+     ]
+    ],
+    "p": "Cobrar barato no es ser amable. Es pagar por trabajar."
+   },
+   {
+    "dark": true,
+    "kicker": "Gratis",
+    "h2": "Descubre el costo real de tu receta en 5 minutos",
+    "cta": "Pruébalo gratis en el sitio ↑",
+    "p": "<span style=\"font:700 34px Inter;color:#FDBA8C;word-break:break-all\">rodv198784-netizen.github.io/margo/?lang=es</span>"
+   }
+  ]
+ },
+ {
+  "id": "en-cookies",
+  "lang": "en",
+  "caption": "Are you losing money on every cookie? 🍪\n\nMost home bakers count the flour and butter, then forget their own time. On a batch of 24, the true cost is $1.67 per cookie. Sell at $1.50 and you lose $2.04 on every dozen.\n\nWork out your real numbers free with Margo 👉 rodv198784-netizen.github.io/margo/?lang=en\n\n#homebaker #cottagebakery #cookiebusiness #bakingbusiness #pricingtips #smallbusiness",
+  "slides": [
+   {
+    "kicker": "Home bakers",
+    "h1": "Are you losing money on every cookie?"
+   },
+   {
+    "h2": "Batch of 24 cookies",
+    "rows": [
+     [
+      "Ingredients",
+      "$0.40"
+     ],
+     [
+      "Your labor (90 min)",
+      "$1.12"
+     ],
+     [
+      "Packaging",
+      "$0.15"
+     ],
+     [
+      "True cost per cookie",
+      "$1.67",
+      "total"
+     ]
+    ]
+   },
+   {
+    "h2": "Selling at $1.50?",
+    "rows": [
+     [
+      "You lose per dozen",
+      "− $2.04",
+      "bad"
+     ],
+     [
+      "Price for 30% profit",
+      "$2.39",
+      "ok"
+     ]
+    ],
+    "p": "Your time is a cost. Charge for it."
+   },
+   {
+    "dark": true,
+    "kicker": "Free",
+    "h2": "Find your true cost in 5 minutes",
+    "cta": "Try it free on the site ↑",
+    "p": "<span style=\"font:700 34px Inter;color:#FDBA8C;word-break:break-all\">rodv198784-netizen.github.io/margo/?lang=en</span>"
+   }
+  ]
+ }
 ]
