@@ -28,15 +28,15 @@ small{color:#6F6460}
 <script>
 const CONFIG={appUrl:"/margo/app/",group:{pt:"LINK_DO_GRUPO_WHATSAPP_PT",es:"LINK_DO_GRUPO_WHATSAPP_ES",en:"LINK_FOUNDERS_COMMUNITY_EN"},email:"support@vglobalventures.com"};
 const T={pt:{h:"Você é uma fundadora do Margo!",p:"Seu pagamento foi confirmado e o seu preço está travado enquanto você for assinante.",
-l1:"Abra o Margo e salve na tela inicial do celular (no menu do navegador, “Adicionar à tela inicial”).",l2:"Em Ajustes, coloque o nome do seu negócio e quanto vale sua hora.",l3:"Entre no grupo das fundadoras: toda semana revisamos preços juntas.",
+l1:"Abra o Margo e salve na tela inicial do celular (no menu do navegador, “Adicionar à tela inicial”).",l2:"Em Ajustes, coloque o nome do seu negócio e quanto vale sua hora.",l3:"Nos próximos dias você recebe por e-mail o convite para o grupo das fundadoras, onde revisamos preços juntas.",
 app:"Abrir o Margo",grp:"Entrar no grupo das fundadoras",s:"Dúvidas ou reembolso (30 dias): "},
 es:{h:"¡Eres fundadora de Margo!",p:"Tu pago fue confirmado y tu precio queda congelado mientras sigas suscrita.",
-l1:"Abre Margo y guárdalo en la pantalla de inicio del celular (en el menú del navegador, “Agregar a pantalla de inicio”).",l2:"En Ajustes, escribe el nombre de tu negocio y cuánto vale tu hora.",l3:"Únete al grupo de fundadoras: cada semana revisamos precios juntas.",
+l1:"Abre Margo y guárdalo en la pantalla de inicio del celular (en el menú del navegador, “Agregar a pantalla de inicio”).",l2:"En Ajustes, escribe el nombre de tu negocio y cuánto vale tu hora.",l3:"En los próximos días recibirás por correo la invitación al grupo de fundadoras, donde revisamos precios juntas.",
 app:"Abrir Margo",grp:"Unirme al grupo de fundadoras",s:"Dudas o reembolso (30 días): "},
-en:{h:"You're a Margo founding member!",p:"Your payment is confirmed and your price is locked for as long as you stay subscribed.",l1:"Open Margo and add it to your phone's home screen (browser menu, “Add to Home Screen”).",l2:"In Settings, enter your bakery's name and what your hour is worth.",l3:"Join the founders' community: every week we review prices together.",app:"Open Margo",grp:"Join the founders' community",s:"Questions or refunds (30 days): "}};
+en:{h:"You're a Margo founding member!",p:"Your payment is confirmed and your price is locked for as long as you stay subscribed.",l1:"Open Margo and add it to your phone's home screen (browser menu, “Add to Home Screen”).",l2:"In Settings, enter your bakery's name and what your hour is worth.",l3:"In the next few days you'll get an email invite to the founders' community, where we review prices together.",app:"Open Margo",grp:"Join the founders' community",s:"Questions or refunds (30 days): "}};
 const q=new URLSearchParams(location.search).get("lang");const L=["es","en"].includes(q)?q:"pt";document.documentElement.lang=L;
 for(const k of ["h","p","l1","l2","l3","app","grp"])document.getElementById(k).textContent=T[L][k];
 document.getElementById("s").textContent=T[L].s+CONFIG.email;
-document.getElementById("app").href=CONFIG.appUrl;document.getElementById("grp").href=CONFIG.group[L];
+document.getElementById("app").href=CONFIG.appUrl;const g=CONFIG.group[L];if(!g||!/^https?:/.test(g))document.getElementById("grp").style.display="none";else document.getElementById("grp").href=g;
 </script>
 </body></html>
