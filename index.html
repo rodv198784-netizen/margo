@@ -64,6 +64,42 @@ details{background:#fff;border:1px solid var(--line);border-radius:14px;padding:
 summary{font-weight:600;cursor:pointer}details p{color:var(--muted);margin:10px 0 0}
 footer{padding:30px 0 90px;color:var(--muted);font-size:13.5px;border-top:1px solid var(--line)}
 .wa{position:fixed;right:16px;bottom:16px;background:#25D366;color:#fff;border-radius:999px;padding:13px 18px;font-weight:700;text-decoration:none;box-shadow:0 8px 24px rgba(0,0,0,.18);font-size:15px}
+
+/* ===== v2 visual ===== */
+body{background:radial-gradient(1200px 600px at 85% -10%,#FFE3CC 0,transparent 60%),radial-gradient(900px 500px at -10% 10%,#FCE7F3 0,transparent 55%),var(--bg)}
+h1{font-size:clamp(38px,6vw,62px)}
+h1 em{font-style:normal;color:var(--brand);background:linear-gradient(transparent 62%,#FED7AA 62%)}
+.btn.p{box-shadow:0 10px 24px rgba(194,65,12,.35);font-size:17px;padding:17px 26px}
+.btn.p:active{transform:translateY(1px)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.chips span{background:#fff;border:1px solid var(--line);border-radius:999px;padding:7px 12px;font-size:13.5px;font-weight:600}
+.chips span:before{content:"✓ ";color:var(--ok)}
+.phone{position:relative;justify-self:center;width:290px;border-radius:38px;background:#1F1A19;padding:12px;box-shadow:0 30px 70px rgba(42,34,32,.28);transform:rotate(2deg)}
+.phone .scr{background:var(--bg);border-radius:28px;padding:18px 14px 20px;min-height:520px}
+.phone .bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;font-weight:700}
+.phone .bar .mark{width:26px;height:26px;font-size:15px;border-radius:8px}
+.pi{background:#fff;border-radius:16px;padding:12px;margin-bottom:10px;border:1px solid var(--line)}
+.pi .t{display:flex;justify-content:space-between;font-weight:700;font-size:14.5px}
+.pi .m{display:flex;justify-content:space-between;font-size:12.5px;color:var(--muted);margin-top:4px}
+.pi .b{display:inline-block;margin-top:8px;font-size:12px;font-weight:700;border-radius:999px;padding:3px 9px}
+.pi .b.ok{background:var(--okbg);color:var(--ok)}.pi .b.bad{background:var(--badbg);color:var(--bad)}
+.phone .q{background:var(--brand);color:#fff;text-align:center;border-radius:14px;padding:12px;font-weight:700;font-size:14px;margin-top:6px}
+.float{position:absolute;background:#fff;border-radius:16px;padding:10px 14px;box-shadow:0 12px 30px rgba(42,34,32,.18);font-weight:700;font-size:14px;transform:rotate(-2deg)}
+.float.a{left:-60px;top:-18px}.float.b{right:-50px;bottom:150px;color:var(--ok)}
+@media(max-width:860px){.phone{width:260px;margin-top:22px}.float.a{left:-24px}.float.b{right:-24px}}
+.bx{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px}
+.bx .c{border-radius:20px;padding:20px;border:1px solid var(--line);background:#fff}
+.bx .c.good{background:#F0FDF4;border-color:#BBF7D0}
+.bx .lbl{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.bx .big{font-family:Fraunces,serif;font-size:40px;font-weight:700;margin:6px 0}
+.bx .c.good .big{color:var(--ok)}.bx .c:not(.good) .big{color:var(--bad)}
+.bx .d{font-size:14px;color:var(--muted)}
+.trybox{background:#2A2220;border-radius:28px;padding:28px 20px;margin:10px 0}
+.trybox h2{color:#fff}.trybox .sub{color:#E7DCD6}
+.trybox .calc{max-width:560px;margin:0 auto}
+.sticky{position:fixed;left:12px;right:12px;bottom:12px;z-index:50;display:none}
+.sticky a{display:block;text-align:center;background:var(--brand);color:#fff;text-decoration:none;font-weight:800;border-radius:16px;padding:16px;box-shadow:0 12px 30px rgba(194,65,12,.45)}
+@media(max-width:860px){.sticky.on{display:block}footer{padding-bottom:90px}}
 </style>
 </head>
 <body>
@@ -79,8 +115,24 @@ footer{padding:30px 0 90px;color:var(--muted);font-size:13.5px;border-top:1px so
     <h1 data-t="h1"></h1>
     <p class="lead" data-t="lead"></p>
     <div class="cta"><a class="btn p" id="ctaApp" data-t="ctaFree"></a><a class="btn s" href="#planos" data-t="ctaPlans"></a></div>
-    <p class="small" data-t="noCard"></p>
+    <div class="chips"><span data-t="ch1"></span><span data-t="ch2"></span><span data-t="ch3"></span></div>
   </div>
+  <div class="phone" aria-hidden="true"><div class="float a" data-t="fa"></div><div class="float b" data-t="fb"></div><div class="scr">
+    <div class="bar"><span style="display:flex;gap:8px;align-items:center"><span class="mark">m</span>Margo</span><span style="font-size:12px;color:var(--muted)" data-t="mkTab"></span></div>
+    <div class="pi"><div class="t"><span data-t="mk1n"></span><span data-t="mk1p"></span></div><div class="m"><span data-t="mk1c"></span><span data-t="mk1l"></span></div><span class="b ok" data-t="mk1b"></span></div>
+    <div class="pi"><div class="t"><span data-t="mk2n"></span><span data-t="mk2p"></span></div><div class="m"><span data-t="mk2c"></span><span data-t="mk2l"></span></div><span class="b bad" data-t="mk2b"></span></div>
+    <div class="pi"><div class="t"><span data-t="mk3n"></span><span data-t="mk3p"></span></div><div class="m"><span data-t="mk3c"></span><span data-t="mk3l"></span></div><span class="b ok" data-t="mk3b"></span></div>
+    <div class="q" data-t="mkQ"></div></div></div>
+</div>
+
+<section>
+  <h2 data-t="bxH"></h2><p class="sub" data-t="bxS"></p>
+  <div class="bx"><div class="c"><div class="lbl" data-t="bxA"></div><div class="big" data-t="bxAv"></div><div class="d" data-t="bxAd"></div></div>
+  <div class="c good"><div class="lbl" data-t="bxB"></div><div class="big" data-t="bxBv"></div><div class="d" data-t="bxBd"></div></div></div>
+</section>
+
+<section class="trybox" id="teste">
+  <h2 data-t="tryH"></h2><p class="sub" data-t="tryS"></p>
   <div class="calc" id="calc">
     <h3 data-t="calcTitle"></h3><p data-t="calcSub"></p>
     <div class="g">
@@ -94,7 +146,7 @@ footer{padding:30px 0 90px;color:var(--muted);font-size:13.5px;border-top:1px so
     <div class="res"><div class="k" data-t="rK"></div><div class="v" id="rV"></div><div class="d" id="rD"></div></div>
     <div class="verdict" id="rX"></div>
   </div>
-</div>
+</section>
 
 <section>
   <h2 data-t="painH"></h2>
@@ -145,6 +197,7 @@ footer{padding:30px 0 90px;color:var(--muted);font-size:13.5px;border-top:1px so
   <details><summary data-t="q5"></summary><p data-t="a5"></p></details>
 </section>
 
+<div class="sticky" id="sticky"><a id="ctaSticky" data-t="ctaFree"></a></div>
 <footer><div style="margin-bottom:8px">Calculadoras grátis: <a href="calcular/preco-brigadeiro/">brigadeiro</a> · <a href="calcular/preco-bolo-de-pote/">bolo de pote</a> · <a href="calcular/preco-cento-docinhos/">cento de docinhos</a> · <a href="calcular/preco-bolo-kg/">bolo por kg</a> · <a href="calcular/preco-salgados-cento/">salgados</a></div>Margo · V Global Ventures · <a href="https://vglobalventures.com/terms.html">Terms</a> · <a href="https://vglobalventures.com/privacy.html">Privacy</a> · <a href="https://vglobalventures.com/refunds.html">Refunds</a> · support@vglobalventures.com</footer>
 </div>
 
@@ -157,8 +210,8 @@ const CONFIG={
 };
 /* ================================================================ */
 const T={
-pt:{eyebrow:"Para quem vende bolos, doces e salgados",h1:"Descubra em 5 minutos se cada doce dá lucro ou prejuízo",
-lead:"O Margo calcula o custo real de cada receita (ingredientes, embalagem, seu tempo e as contas do mês) e mostra o preço certo. Depois, monta o orçamento e envia pelo WhatsApp.",
+pt:{h1H:"Pare de <em>trabalhar de graça</em> na cozinha",lead:"Descubra em 5 minutos quanto cada doce custa de verdade e quanto cobrar para lucrar. Sem planilha, direto no celular, e com orçamento pronto para o WhatsApp.",ch1:"Grátis para começar",ch2:"Sem cartão",ch3:"Garantia de 30 dias",fa:"🧁 Cento de brigadeiro: R$ 287",fb:"+R$ 87 de lucro por cento",mkTab:"Meus produtos",mk1n:"Brigadeiro gourmet",mk1p:"R$ 2,87",mk1c:"custo R$ 1,72",mk1l:"lucro R$ 1,15",mk1b:"Preço saudável · 40%",mk2n:"Bolo de pote",mk2p:"R$ 8,00",mk2c:"custo R$ 8,40",mk2l:"prejuízo R$ 0,40",mk2b:"Você está perdendo dinheiro",mk3n:"Bolo de aniversário (kg)",mk3p:"R$ 95,00",mk3c:"custo R$ 58,30",mk3l:"lucro R$ 36,70",mk3b:"Preço saudável · 39%",mkQ:"Enviar orçamento no WhatsApp",bxH:"O mesmo brigadeiro, dois resultados",bxS:"Custo real de R$ 1,72 por unidade (ingredientes, forminha, embalagem e o seu tempo).",bxA:"Cobrando R$ 2,00 no chute",bxAv:"R$ 28",bxAd:"de lucro no cento. Horas de trabalho para quase nada.",bxB:"Com o preço do Margo (R$ 2,87)",bxBv:"R$ 115",bxBd:"de lucro no cento. 4 vezes mais, com o mesmo trabalho.",tryH:"Faça o teste com a sua receita",tryS:"Troque pelos seus números e veja na hora se você está lucrando.",eyebrow:"Para quem vende bolos, doces e salgados",h1:"Descubra em 5 minutos se cada doce dá lucro ou prejuízo",
+
 ctaFree:"Testar grátis agora",ctaPlans:"Ver planos",noCard:"Sem cartão. Funciona no celular.",
 calcTitle:"Calculadora rápida",calcSub:"Troque pelos números da sua receita.",fIng:"Ingredientes da receita (R$)",fYield:"Rende quantas unidades",fPack:"Embalagem por unidade (R$)",
 fMin:"Tempo de trabalho (min)",fHour:"Sua hora vale (R$)",fNow:"Quanto você cobra hoje (R$)",rK:"Preço sugerido por unidade (30% de lucro)",
@@ -179,8 +232,8 @@ q2:"Funciona para salgados, marmitas e outros produtos?",a2:"Sim. Qualquer produ
 q3:"Meus dados ficam seguros?",a3:"Na versão beta, seus dados ficam salvos no seu próprio aparelho. Você pode copiar um backup a qualquer momento.",
 q4:"E se eu não gostar do plano pago?",a4:"Você tem 30 dias para pedir o reembolso integral, sem perguntas.",q5:"O Margo garante que vou ganhar mais?",a5:"Não prometemos renda. O Margo mostra seus números com clareza; a decisão de preço é sua.",
 wa:"Dúvidas? WhatsApp",waMsg:"Oi! Vi o Margo e quero saber mais."},
-es:{eyebrow:"Para quien vende tortas, postres y bocadillos",h1:"Descubre en 5 minutos si cada postre te deja ganancia o pérdida",
-lead:"Margo calcula el costo real de cada receta (ingredientes, empaque, tu tiempo y los gastos del mes) y te muestra el precio correcto. Luego arma el presupuesto y lo envía por WhatsApp.",
+es:{h1H:"Deja de <em>trabajar gratis</em> en la cocina",lead:"Descubre en 5 minutos cuánto cuesta de verdad cada postre y cuánto cobrar para ganar. Sin hojas de cálculo, desde el celular y con presupuesto listo para WhatsApp.",ch1:"Gratis para empezar",ch2:"Sin tarjeta",ch3:"Garantía de 30 días",fa:"🧁 Docena de cupcakes: US$ 34",fb:"+US$ 11 de ganancia por docena",mkTab:"Mis productos",mk1n:"Cupcake decorado",mk1p:"US$ 2,87",mk1c:"costo US$ 1,72",mk1l:"ganancia US$ 1,15",mk1b:"Precio sano · 40%",mk2n:"Alfajor",mk2p:"US$ 0,80",mk2c:"costo US$ 0,84",mk2l:"pérdida US$ 0,04",mk2b:"Estás perdiendo dinero",mk3n:"Torta de cumpleaños",mk3p:"US$ 45,00",mk3c:"costo US$ 27,50",mk3l:"ganancia US$ 17,50",mk3b:"Precio sano · 39%",mkQ:"Enviar presupuesto por WhatsApp",bxH:"El mismo postre, dos resultados",bxS:"Costo real de 1,72 por unidad (ingredientes, empaque y tu tiempo).",bxA:"Cobrando 2,00 a ojo",bxAv:"0,28",bxAd:"de ganancia por unidad. Horas de trabajo para casi nada.",bxB:"Con el precio de Margo (2,87)",bxBv:"1,15",bxBd:"de ganancia por unidad. 4 veces más, con el mismo trabajo.",tryH:"Haz la prueba con tu receta",tryS:"Cambia los números por los tuyos y mira al instante si estás ganando.",eyebrow:"Para quien vende tortas, postres y bocadillos",h1:"Descubre en 5 minutos si cada postre te deja ganancia o pérdida",
+
 ctaFree:"Probar gratis ahora",ctaPlans:"Ver planes",noCard:"Sin tarjeta. Funciona en el celular.",
 calcTitle:"Calculadora rápida",calcSub:"Cambia los números por los de tu receta.",fIng:"Ingredientes de la receta (US$)",fYield:"¿Cuántas unidades rinde?",fPack:"Empaque por unidad (US$)",
 fMin:"Tiempo de trabajo (min)",fHour:"Tu hora vale (US$)",fNow:"Lo que cobras hoy (US$)",rK:"Precio sugerido por unidad (30% de ganancia)",
@@ -201,8 +254,8 @@ q2:"¿Sirve para bocadillos, comida y otros productos?",a2:"Sí. Cualquier produ
 q3:"¿Mis datos están seguros?",a3:"En la versión beta tus datos se guardan en tu propio dispositivo. Puedes copiar un respaldo cuando quieras.",
 q4:"¿Y si no me gusta el plan pago?",a4:"Tienes 30 días para pedir el reembolso completo, sin preguntas.",q5:"¿Margo garantiza que voy a ganar más?",a5:"No prometemos ingresos. Margo te muestra tus números con claridad; la decisión de precio es tuya.",
 wa:"¿Dudas? WhatsApp",waMsg:"¡Hola! Vi Margo y quiero saber más."},
-en:{eyebrow:"For home bakers and cottage food sellers",h1:"Find out in 5 minutes which bakes make you money, and which lose it",
-lead:"Margo works out the true cost of every recipe (ingredients, packaging, your time and your monthly bills) and shows the right price. Then it builds the customer quote and sends it by text or WhatsApp.",
+en:{h1H:"Stop <em>baking for free</em>",lead:"Find out in 5 minutes what each bake really costs and what to charge to make a profit. No spreadsheets, right on your phone, with quotes ready to send.",ch1:"Free to start",ch2:"No card needed",ch3:"30-day guarantee",fa:"🍪 Dozen cookies: $34",fb:"+$11 profit per dozen",mkTab:"My products",mk1n:"Decorated cookie",mk1p:"$2.87",mk1c:"cost $1.72",mk1l:"profit $1.15",mk1b:"Healthy price · 40%",mk2n:"Cupcake",mk2p:"$3.00",mk2c:"cost $3.15",mk2l:"loss $0.15",mk2b:"You're losing money",mk3n:"Birthday cake",mk3p:"$85.00",mk3c:"cost $52.00",mk3l:"profit $33.00",mk3b:"Healthy price · 39%",mkQ:"Send quote to customer",bxH:"Same cookie, two outcomes",bxS:"Real cost of 1.72 per cookie (ingredients, packaging and your time).",bxA:"Charging 2.00 by guesswork",bxAv:"$0.28",bxAd:"profit per cookie. Hours of work for almost nothing.",bxB:"With Margo's price (2.87)",bxBv:"$1.15",bxBd:"profit per cookie. 4x more for the same work.",tryH:"Try it with your own recipe",tryS:"Swap in your numbers and see instantly if you're making money.",eyebrow:"For home bakers and cottage food sellers",h1:"Find out in 5 minutes which bakes make you money, and which lose it",
+
 ctaFree:"Try it free",ctaPlans:"See plans",noCard:"No card needed. Works on your phone.",
 calcTitle:"Quick price check",calcSub:"Swap in the numbers from your recipe.",fIng:"Ingredients for the batch ($)",fYield:"Units per batch",fPack:"Packaging per unit ($)",
 fMin:"Working time (min)",fHour:"Your hour is worth ($)",fNow:"What you charge today ($)",rK:"Suggested price per unit (30% profit)",
@@ -243,10 +296,10 @@ function calc(){
 }
 function render(){
   document.documentElement.lang=L;
-  document.querySelectorAll("[data-t]").forEach(e=>e.textContent=T[L][e.dataset.t]);
+  document.querySelectorAll("[data-t]").forEach(e=>{const v=T[L][e.dataset.t];if(v!==undefined)e.textContent=v;});const h=document.querySelector("h1");if(T[L].h1H)h.innerHTML=T[L].h1H;
   document.querySelectorAll(".lang button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.l===L));
   const app=CONFIG.appUrl+(CONFIG.appUrl.includes("?")?"&":"?")+CONFIG.utm;
-  ctaApp.href=app;ctaApp2.href=app;
+  ctaApp.href=app;ctaApp2.href=app;ctaSticky.href=app;
   ctaBuy.href=CONFIG.buyUrl[L];ctaBuy.target="_blank";ctaBuy.rel="noopener";
   if(!dirty)for(const k in DEF[L])document.getElementById(k).value=DEF[L][k];
   calc();
@@ -255,6 +308,7 @@ try{if(/^Europe\//.test(Intl.DateTimeFormat().resolvedOptions().timeZone)&&!/Lis
 document.querySelectorAll(".lang button").forEach(b=>b.onclick=()=>{L=b.dataset.l;render();});
 ["cI","cY","cP","cM","cH","cN"].forEach(id=>document.getElementById(id).addEventListener("input",()=>{dirty=true;calc();}));
 render();
+addEventListener("scroll",()=>{document.getElementById("sticky").classList.toggle("on",scrollY>500)},{passive:true});
 </script>
 <div id="mgPop" style="display:none;position:fixed;inset:0;background:rgba(42,34,32,.55);z-index:999;align-items:center;justify-content:center;padding:18px">
 <div style="background:#fff;border-radius:20px;max-width:420px;width:100%;padding:26px 22px;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.25);font-family:inherit">
@@ -288,11 +342,25 @@ mgF.onsubmit=async e=>{e.preventDefault();const em=mgE.value.trim(),l=lang();mgB
  mgGo.href=base+"?prefilled_promo_code=VOLTA10&prefilled_email="+encodeURIComponent(em);
  mgA.style.display="none";mgOk.style.display="block";};
 document.addEventListener("mouseout",e=>{if(!e.relatedTarget&&e.clientY<10)show();});
-setTimeout(show,35000);
-window.addEventListener("scroll",()=>{if((scrollY+innerHeight)/document.body.scrollHeight>0.7)setTimeout(show,1500);},{passive:true});
+setTimeout(show,3500);
+
 let left=false;document.addEventListener("click",e=>{const a=e.target.closest&&e.target.closest("a");if(a&&/buy\.stripe\.com/.test(a.href)&&!/VOLTA10/.test(a.href))left=true;});
 document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible"&&left){left=false;setTimeout(show,800);}});
 })();
+</script>
+<script>
+(function(){var E=[],t0=Date.now(),sent=false,mx=0;function ev(n){if(E.indexOf(n)<0)E.push(n);}
+window.mgEv=ev;ev("view");
+addEventListener("scroll",function(){var d=(scrollY+innerHeight)/document.body.scrollHeight;if(d>mx){mx=d;if(d>.5)ev("scroll50");if(d>.9)ev("scroll90");}},{passive:true});
+document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("a,button");if(!a)return;var h=a.href||"";
+if(/buy\.stripe/.test(h))ev("click_buy");else if(/\/app\//.test(h))ev("click_app");else if(/#planos/.test(h))ev("click_plans");else if(a.dataset&&a.dataset.l)ev("lang_"+a.dataset.l);else if(a.id==="mgB")ev("popup_submit");});
+document.addEventListener("input",function(e){if(e.target.closest&&e.target.closest("#calc"))ev("calc_use");});
+var mo=new MutationObserver(function(){var p=document.getElementById("mgPop");if(p&&p.style.display==="flex")ev("popup_shown");});
+addEventListener("load",function(){var p=document.getElementById("mgPop");if(p)mo.observe(p,{attributes:true});});
+function send(){if(sent)return;sent=true;var q=new URLSearchParams(location.search);
+var b=JSON.stringify({ev:E,sec:Math.round((Date.now()-t0)/1000),path:location.pathname,ref:document.referrer.slice(0,120),utm:(q.get("utm_source")||"")+"/"+(q.get("utm_campaign")||""),lang:(typeof L!=="undefined"?L:""),tz:(Intl.DateTimeFormat().resolvedOptions().timeZone||""),w:innerWidth});
+try{navigator.sendBeacon("/margo/api/ev",new Blob([b],{type:"application/json"}));}catch(x){}}
+addEventListener("pagehide",send);document.addEventListener("visibilitychange",function(){if(document.visibilityState==="hidden")send();});})();
 </script>
 </body>
 </html>
