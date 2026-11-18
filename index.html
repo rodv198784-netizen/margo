@@ -319,14 +319,14 @@ addEventListener("scroll",()=>{document.getElementById("sticky").classList.toggl
 <button style="width:100%;margin-top:10px;background:#C2410C;color:#fff;border:0;border-radius:12px;padding:15px;font:inherit;font-weight:700;cursor:pointer" id="mgB"></button></form>
 <small style="display:block;color:#9A8F8B;margin-top:10px" id="mgS"></small></div>
 <div id="mgOk" style="display:none;text-align:center"><h3 style="margin:6px 0;font-size:24px" id="mgOkH"></h3>
-<div style="font-size:30px;font-weight:800;letter-spacing:.08em;border:2px dashed #C2410C;border-radius:12px;padding:12px;margin:14px 0;color:#C2410C">VOLTA10</div>
+<div style="font-size:30px;font-weight:800;letter-spacing:.08em;border:2px dashed #C2410C;border-radius:12px;padding:12px;margin:14px 0;color:#C2410C">BLACK10</div>
 <a id="mgGo" style="display:block;background:#C2410C;color:#fff;text-decoration:none;font-weight:700;border-radius:12px;padding:15px" target="_blank" rel="noopener"></a></div>
 </div></div>
 <script>
 (function(){
-const TX={pt:{k:"ESPERA AÍ!",h:"Ganhe 10% no plano Fundadora",p:"Deixe seu e-mail e libere o cupom agora. Também te mandamos dicas de precificação.",ph:"seu@email.com",b:"Quero meu desconto",s:"Sem spam. Cancele quando quiser.",ok:"Seu cupom está liberado 🎉",go:"Usar meu desconto"},
-es:{k:"¡ESPERA!",h:"Obtén 10% en el plan Fundadora",p:"Deja tu correo y desbloquea el cupón ahora. También te enviamos consejos para poner precios.",ph:"tu@email.com",b:"Quiero mi descuento",s:"Sin spam. Cancela cuando quieras.",ok:"Tu cupón está listo 🎉",go:"Usar mi descuento"},
-en:{k:"WAIT!",h:"Get 10% off the Founding plan",p:"Leave your email to unlock the coupon now. We'll also send you pricing tips.",ph:"you@email.com",b:"Get my discount",s:"No spam. Unsubscribe anytime.",ok:"Your coupon is unlocked 🎉",go:"Use my discount"}};
+const TX={pt:{k:"BLACK FRIDAY · 10% OFF",h:"Chegou, ganhou: 10% no plano Fundadora",p:"Deixe seu e-mail e libere seu cupom agora. Também te mandamos dicas de precificação.",ph:"seu@email.com",b:"Quero meu desconto",s:"Sem spam. Cancele quando quiser.",ok:"Seu cupom está liberado 🎉",go:"Usar meu desconto"},
+es:{k:"BLACK FRIDAY · 10% OFF",h:"Llegaste, ganaste: 10% en el plan Fundadora",p:"Deja tu correo y desbloquea el cupón ahora. También te enviamos consejos para poner precios.",ph:"tu@email.com",b:"Quiero mi descuento",s:"Sin spam. Cancela cuando quieras.",ok:"Tu cupón está listo 🎉",go:"Usar mi descuento"},
+en:{k:"BLACK FRIDAY · 10% OFF",h:"Welcome gift: 10% off the Founding plan",p:"Leave your email to unlock the coupon now. We'll also send you pricing tips.",ph:"you@email.com",b:"Get my discount",s:"No spam. Unsubscribe anytime.",ok:"Your coupon is unlocked 🎉",go:"Use my discount"}};
 const KEY="margo.pop",pop=document.getElementById("mgPop");let shown=false;
 function seen(){try{const v=+localStorage.getItem(KEY)||0;return Date.now()-v<7*864e5||localStorage.getItem("margo.lead")||localStorage.getItem("margo.pro");}catch(e){return false;}}
 function lang(){return (typeof L!=="undefined"&&TX[L])?L:"pt";}
@@ -336,15 +336,15 @@ function show(){if(shown||seen())return;shown=true;const t=TX[lang()];
 function hide(){pop.style.display="none";}
 mgX.onclick=hide;pop.onclick=e=>{if(e.target===pop)hide();};
 mgF.onsubmit=async e=>{e.preventDefault();const em=mgE.value.trim(),l=lang();mgB.disabled=true;
- try{await fetch("/margo/api/lead",{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({email:em,lang:l,page:location.pathname,src:"popup"})});}catch(x){}
+ try{await fetch("/margo/api/lead",{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({email:em,lang:l,page:location.pathname,src:"popup",buy:(typeof CONFIG!=="undefined"&&CONFIG.buyUrl[l])||""})});}catch(x){}
  try{localStorage.setItem("margo.lead",em);}catch(x){}
  const base=(typeof CONFIG!=="undefined"&&CONFIG.buyUrl[l])||CONFIG.buyUrl.pt;
- mgGo.href=base+"?prefilled_promo_code=VOLTA10&prefilled_email="+encodeURIComponent(em);
+ mgGo.href=base+"?prefilled_promo_code=BLACK10&prefilled_email="+encodeURIComponent(em);
  mgA.style.display="none";mgOk.style.display="block";};
 document.addEventListener("mouseout",e=>{if(!e.relatedTarget&&e.clientY<10)show();});
 setTimeout(show,3500);
 
-let left=false;document.addEventListener("click",e=>{const a=e.target.closest&&e.target.closest("a");if(a&&/buy\.stripe\.com/.test(a.href)&&!/VOLTA10/.test(a.href))left=true;});
+let left=false;document.addEventListener("click",e=>{const a=e.target.closest&&e.target.closest("a");if(a&&/buy\.stripe\.com/.test(a.href)&&!/BLACK10/.test(a.href))left=true;});
 document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible"&&left){left=false;setTimeout(show,800);}});
 })();
 </script>
