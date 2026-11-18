@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Margo — Descubra quanto cobrar pelos seus doces em 5 minutos</title>
+<meta name="description" content="Calcule o custo real e o preço certo de bolos, doces e salgados. Orçamento pronto para WhatsApp. Grátis para começar.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FBF7F2;--card:#fff;--ink:#2A2220;--muted:#6F6460;--line:#EADFD6;--brand:#C2410C;--soft:#FDEBDD;--ok:#15803D;--okbg:#DCFCE7;--bad:#B91C1C;--badbg:#FEE2E2}
+*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,sans-serif;line-height:1.5;-webkit-text-size-adjust:100%}
+a{color:inherit}
+.w{max-width:1040px;margin:0 auto;padding:0 20px}
+nav.top{display:flex;justify-content:space-between;align-items:center;padding:16px 0}
+.logo{display:flex;align-items:center;gap:10px;font-family:Fraunces,serif;font-size:22px;font-weight:700;text-decoration:none}
+.mark{width:34px;height:34px;border-radius:10px;background:var(--brand);color:#fff;display:grid;place-items:center;font-size:20px}
+.lang{display:flex;gap:4px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:3px}
+.lang button{border:0;background:none;border-radius:999px;padding:6px 11px;font:600 13px Inter,sans-serif;color:var(--muted);cursor:pointer}
+.lang button[aria-pressed=true]{background:var(--ink);color:#fff}
+.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:36px;align-items:center;padding:28px 0 56px}
+@media(max-width:860px){.hero{grid-template-columns:1fr;gap:24px}}
+.eyebrow{display:inline-block;background:var(--soft);color:var(--brand);font-weight:700;font-size:13px;border-radius:999px;padding:6px 12px;margin-bottom:14px}
+h1{font-family:Fraunces,serif;font-size:clamp(34px,5.2vw,54px);line-height:1.05;margin:0 0 16px;letter-spacing:-.02em}
+.lead{font-size:18.5px;color:var(--muted);margin:0 0 24px;max-width:34em}
+.cta{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:14px;padding:15px 22px;font:700 16px Inter,sans-serif;text-decoration:none;cursor:pointer}
+.btn.p{background:var(--brand);color:#fff}.btn.s{background:#fff;border:1px solid var(--line)}
+.small{font-size:13.5px;color:var(--muted);margin-top:10px}
+.calc{background:#fff;border:1px solid var(--line);border-radius:22px;padding:22px;box-shadow:0 10px 40px rgba(42,34,32,.08)}
+.calc h3{margin:0 0 4px;font-size:18px}.calc p{margin:0 0 14px;color:var(--muted);font-size:14px}
+.g{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+label{display:block;font-size:12.5px;font-weight:600;color:var(--muted);margin-bottom:4px}
+input{width:100%;border:1px solid var(--line);border-radius:12px;padding:11px 12px;font:500 16px Inter,sans-serif;background:#fff}
+input:focus{outline:none;border-color:var(--brand);box-shadow:0 0 0 3px var(--soft)}
+.res{margin-top:14px;background:var(--ink);color:#fff;border-radius:16px;padding:16px}
+.res .k{opacity:.7;font-size:13px;font-weight:600}.res .v{font-family:Fraunces,serif;font-size:34px;font-weight:700}
+.res .d{opacity:.85;font-size:13.5px}
+.verdict{margin-top:10px;border-radius:12px;padding:10px 12px;font-size:14px;font-weight:600;display:none}
+section{padding:56px 0;border-top:1px solid var(--line)}
+h2{font-family:Fraunces,serif;font-size:clamp(28px,4vw,38px);margin:0 0 10px;letter-spacing:-.01em}
+.sub{color:var(--muted);font-size:17px;margin:0 0 30px;max-width:40em}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.feat{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:760px){.steps,.feat{grid-template-columns:1fr}}
+.c{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px}
+.n{width:32px;height:32px;border-radius:50%;background:var(--soft);color:var(--brand);font-weight:700;display:grid;place-items:center;margin-bottom:10px}
+.c h4{margin:0 0 6px;font-size:16.5px}.c p{margin:0;color:var(--muted);font-size:15px}
+.pain{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+@media(max-width:760px){.pain{grid-template-columns:1fr}}
+.pain div{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 16px;font-weight:500}
+.price{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:820px}
+@media(max-width:760px){.price{grid-template-columns:1fr}}
+.plan{background:#fff;border:1px solid var(--line);border-radius:20px;padding:24px}
+.plan.hl{border:2px solid var(--brand);position:relative}
+.tag{position:absolute;top:-12px;left:20px;background:var(--brand);color:#fff;font-size:12px;font-weight:700;border-radius:999px;padding:4px 10px}
+.plan h3{margin:0 0 4px}.amt{font-family:Fraunces,serif;font-size:40px;font-weight:700;margin:8px 0 0}
+.amt small{font:500 15px Inter,sans-serif;color:var(--muted)}
+.old{color:var(--muted);text-decoration:line-through;font-size:14px}
+.plan ul{padding:0;margin:16px 0 20px;list-style:none}.plan li{padding:6px 0 6px 26px;position:relative;font-size:15px}
+.plan li:before{content:"✓";position:absolute;left:0;color:var(--ok);font-weight:700}
+details{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-bottom:10px}
+summary{font-weight:600;cursor:pointer}details p{color:var(--muted);margin:10px 0 0}
+footer{padding:30px 0 90px;color:var(--muted);font-size:13.5px;border-top:1px solid var(--line)}
+.wa{position:fixed;right:16px;bottom:16px;background:#25D366;color:#fff;border-radius:999px;padding:13px 18px;font-weight:700;text-decoration:none;box-shadow:0 8px 24px rgba(0,0,0,.18);font-size:15px}
+</style>
+</head>
+<body>
+<div class="w">
+<nav class="top">
+  <a class="logo" href="#"><span class="mark">m</span>Margo</a>
+  <div class="lang"><button data-l="pt">PT</button><button data-l="es">ES</button><button data-l="en">EN</button></div>
+</nav>
+
+<div class="hero">
+  <div>
+    <span class="eyebrow" data-t="eyebrow"></span>
+    <h1 data-t="h1"></h1>
+    <p class="lead" data-t="lead"></p>
+    <div class="cta"><a class="btn p" id="ctaApp" data-t="ctaFree"></a><a class="btn s" href="#planos" data-t="ctaPlans"></a></div>
+    <p class="small" data-t="noCard"></p>
+  </div>
+  <div class="calc" id="calc">
+    <h3 data-t="calcTitle"></h3><p data-t="calcSub"></p>
+    <div class="g">
+      <div><label data-t="fIng"></label><input inputmode="decimal" id="cI" value="28.50"></div>
+      <div><label data-t="fYield"></label><input inputmode="decimal" id="cY" value="25"></div>
+      <div><label data-t="fPack"></label><input inputmode="decimal" id="cP" value="0.10"></div>
+      <div><label data-t="fMin"></label><input inputmode="decimal" id="cM" value="90"></div>
+      <div><label data-t="fHour"></label><input inputmode="decimal" id="cH" value="20"></div>
+      <div><label data-t="fNow"></label><input inputmode="decimal" id="cN" value="2.50"></div>
+    </div>
+    <div class="res"><div class="k" data-t="rK"></div><div class="v" id="rV"></div><div class="d" id="rD"></div></div>
+    <div class="verdict" id="rX"></div>
+  </div>
+</div>
+
+<section>
+  <h2 data-t="painH"></h2>
+  <div class="pain"><div data-t="p1"></div><div data-t="p2"></div><div data-t="p3"></div><div data-t="p4"></div></div>
+</section>
+
+<section>
+  <h2 data-t="howH"></h2><p class="sub" data-t="howS"></p>
+  <div class="steps">
+    <div class="c"><div class="n">1</div><h4 data-t="s1h"></h4><p data-t="s1p"></p></div>
+    <div class="c"><div class="n">2</div><h4 data-t="s2h"></h4><p data-t="s2p"></p></div>
+    <div class="c"><div class="n">3</div><h4 data-t="s3h"></h4><p data-t="s3p"></p></div>
+  </div>
+</section>
+
+<section>
+  <h2 data-t="featH"></h2>
+  <div class="feat">
+    <div class="c"><h4 data-t="f1h"></h4><p data-t="f1p"></p></div>
+    <div class="c"><h4 data-t="f2h"></h4><p data-t="f2p"></p></div>
+    <div class="c"><h4 data-t="f3h"></h4><p data-t="f3p"></p></div>
+    <div class="c"><h4 data-t="f4h"></h4><p data-t="f4p"></p></div>
+    <div class="c"><h4 data-t="f5h"></h4><p data-t="f5p"></p></div>
+    <div class="c"><h4 data-t="f6h"></h4><p data-t="f6p"></p></div>
+  </div>
+</section>
+
+<section id="planos">
+  <h2 data-t="priceH"></h2><p class="sub" data-t="priceS"></p>
+  <div class="price">
+    <div class="plan"><h3>Margo Free</h3><div class="amt" data-t="freeAmt"></div>
+      <ul><li data-t="fr1"></li><li data-t="fr2"></li><li data-t="fr3"></li></ul>
+      <a class="btn s" id="ctaApp2" data-t="ctaFree"></a></div>
+    <div class="plan hl"><span class="tag" data-t="tag"></span><h3 data-t="founderH"></h3>
+      <div class="amt"><span data-t="founderAmt"></span> <small data-t="perYear"></small></div><div class="old" data-t="founderOld"></div>
+      <ul><li data-t="fo1"></li><li data-t="fo2"></li><li data-t="fo3"></li><li data-t="fo4"></li><li data-t="fo5"></li></ul>
+      <a class="btn p" id="ctaBuy" data-t="ctaBuy"></a>
+      <p class="small" data-t="guarantee"></p></div>
+  </div>
+</section>
+
+<section>
+  <h2 data-t="faqH"></h2>
+  <details><summary data-t="q1"></summary><p data-t="a1"></p></details>
+  <details><summary data-t="q2"></summary><p data-t="a2"></p></details>
+  <details><summary data-t="q3"></summary><p data-t="a3"></p></details>
+  <details><summary data-t="q4"></summary><p data-t="a4"></p></details>
+  <details><summary data-t="q5"></summary><p data-t="a5"></p></details>
+</section>
+
+<footer>Margo · V Global Ventures · <a href="https://vglobalventures.com/terms.html">Terms</a> · <a href="https://vglobalventures.com/privacy.html">Privacy</a> · <a href="https://vglobalventures.com/refunds.html">Refunds</a> · support@vglobalventures.com</footer>
+</div>
+
+<script>
+/* ====== CONFIGURAÇÃO: troque estes valores antes de publicar ====== */
+const CONFIG={
+  appUrl:"/margo/app/",                                   // onde o app do Margo ficará publicado
+  buyUrl:{pt:"https://buy.stripe.com/3cI5kwcVL1ue8DE8iG1oI00", es:"https://buy.stripe.com/eVq28kf3T5Ku5rs56u1oI01", en:"https://buy.stripe.com/eVqeV65tjeh0cTU1Ui1oI02"}, // links de pagamento da Stripe (plano Fundadora)
+  utm:"utm_source=landing&utm_campaign=fundadoras"
+};
+/* ================================================================ */
+const T={
+pt:{eyebrow:"Para quem vende bolos, doces e salgados",h1:"Descubra em 5 minutos se cada doce dá lucro ou prejuízo",
+lead:"O Margo calcula o custo real de cada receita (ingredientes, embalagem, seu tempo e as contas do mês) e mostra o preço certo. Depois, monta o orçamento e envia pelo WhatsApp.",
+ctaFree:"Testar grátis agora",ctaPlans:"Ver planos",noCard:"Sem cartão. Funciona no celular.",
+calcTitle:"Calculadora rápida",calcSub:"Troque pelos números da sua receita.",fIng:"Ingredientes da receita (R$)",fYield:"Rende quantas unidades",fPack:"Embalagem por unidade (R$)",
+fMin:"Tempo de trabalho (min)",fHour:"Sua hora vale (R$)",fNow:"Quanto você cobra hoje (R$)",rK:"Preço sugerido por unidade (30% de lucro)",
+cost:"Custo real",profit:"lucro",loss:"Você está perdendo {v} em cada unidade.",thin:"Seu lucro hoje é só {p}% — dá para cobrar melhor.",good:"Seu preço está saudável: {p}% de lucro.",
+painH:"Se alguma destas frases é sua, o Margo é para você",p1:"“Vendo bastante, mas no fim do mês não sobra dinheiro.”",p2:"“Cobro o que as outras cobram, porque não sei fazer a conta.”",p3:"“Esqueço de incluir embalagem, gás e meu próprio tempo.”",p4:"“Tenho vergonha de aumentar o preço.”",
+howH:"Como funciona",howS:"Você não precisa saber planilha nem fórmula.",s1h:"Cadastre o que você compra",s1p:"Leite condensado, chocolate, forminhas: o preço que pagou e o tamanho da embalagem.",
+s2h:"Monte a receita",s2p:"Diga quanto usa de cada ingrediente, quanto rende e quanto tempo leva.",s3h:"Veja o preço certo",s3p:"O Margo mostra custo, preço sugerido e lucro, e avisa se você está tendo prejuízo.",
+featH:"Tudo o que você precisa para cobrar com segurança",f1h:"Custo real por unidade",f1p:"Ingredientes, embalagem, seu trabalho e as contas fixas do mês, divididas do jeito certo.",
+f2h:"Preço sugerido",f2p:"Escolha o lucro que quer ter e veja o preço na hora, já arredondado.",f3h:"Alerta de prejuízo",f3p:"Coloque o preço que cobra hoje e descubra se está perdendo dinheiro.",
+f4h:"Orçamento pelo WhatsApp",f4p:"Monte o pedido com entrega e desconto e envie em um toque.",f5h:"Português e espanhol",f5p:"Funciona em reais, pesos, dólares e mais 8 moedas.",f6h:"Feito para o celular",f6p:"Use na cozinha, com uma mão, sem instalar nada.",
+priceH:"Planos",priceS:"Comece grátis. Quando quiser tudo liberado, entre como fundadora com preço travado para sempre.",
+freeAmt:"R$ 0",fr1:"Até 5 produtos",fr2:"Calculadora completa",fr3:"Orçamento com a marca Margo",
+tag:"Só 100 vagas",founderH:"Plano Fundadora",founderAmt:"R$ 97",perYear:"/ano",founderOld:"Depois do lançamento: R$ 149/ano",
+fo1:"Produtos ilimitados",fo2:"Orçamento com o nome do seu negócio",fo3:"Preço travado enquanto você for assinante",fo4:"Acesso antecipado a todas as novidades",fo5:"Grupo de fundadoras com revisão de preços",
+ctaBuy:"Quero ser fundadora",guarantee:"Garantia de 30 dias: não gostou, devolvemos 100%.",
+faqH:"Perguntas frequentes",q1:"Preciso entender de planilha?",a1:"Não. Você só digita o que comprou e quanto usou. O Margo faz as contas.",
+q2:"Funciona para salgados, marmitas e outros produtos?",a2:"Sim. Qualquer produto feito com ingredientes, embalagem e tempo de trabalho.",
+q3:"Meus dados ficam seguros?",a3:"Na versão beta, seus dados ficam salvos no seu próprio aparelho. Você pode copiar um backup a qualquer momento.",
+q4:"E se eu não gostar do plano pago?",a4:"Você tem 30 dias para pedir o reembolso integral, sem perguntas.",q5:"O Margo garante que vou ganhar mais?",a5:"Não prometemos renda. O Margo mostra seus números com clareza; a decisão de preço é sua.",
+wa:"Dúvidas? WhatsApp",waMsg:"Oi! Vi o Margo e quero saber mais."},
+es:{eyebrow:"Para quien vende tortas, postres y bocadillos",h1:"Descubre en 5 minutos si cada postre te deja ganancia o pérdida",
+lead:"Margo calcula el costo real de cada receta (ingredientes, empaque, tu tiempo y los gastos del mes) y te muestra el precio correcto. Luego arma el presupuesto y lo envía por WhatsApp.",
+ctaFree:"Probar gratis ahora",ctaPlans:"Ver planes",noCard:"Sin tarjeta. Funciona en el celular.",
+calcTitle:"Calculadora rápida",calcSub:"Cambia los números por los de tu receta.",fIng:"Ingredientes de la receta (US$)",fYield:"¿Cuántas unidades rinde?",fPack:"Empaque por unidad (US$)",
+fMin:"Tiempo de trabajo (min)",fHour:"Tu hora vale (US$)",fNow:"Lo que cobras hoy (US$)",rK:"Precio sugerido por unidad (30% de ganancia)",
+cost:"Costo real",profit:"ganancia",loss:"Estás perdiendo {v} en cada unidad.",thin:"Tu ganancia hoy es solo {p}%: puedes cobrar mejor.",good:"Tu precio está sano: {p}% de ganancia.",
+painH:"Si alguna de estas frases es tuya, Margo es para ti",p1:"“Vendo mucho, pero a fin de mes no me queda dinero.”",p2:"“Cobro lo que cobran las demás porque no sé hacer la cuenta.”",p3:"“Olvido incluir el empaque, el gas y mi propio tiempo.”",p4:"“Me da vergüenza subir el precio.”",
+howH:"Cómo funciona",howS:"No necesitas saber de hojas de cálculo ni fórmulas.",s1h:"Registra lo que compras",s1p:"Leche condensada, chocolate, capacillos: el precio que pagaste y el tamaño del paquete.",
+s2h:"Arma la receta",s2p:"Indica cuánto usas de cada ingrediente, cuánto rinde y cuánto tiempo toma.",s3h:"Mira el precio correcto",s3p:"Margo muestra costo, precio sugerido y ganancia, y te avisa si estás perdiendo dinero.",
+featH:"Todo lo que necesitas para cobrar con seguridad",f1h:"Costo real por unidad",f1p:"Ingredientes, empaque, tu trabajo y los gastos fijos del mes, repartidos como se debe.",
+f2h:"Precio sugerido",f2p:"Elige la ganancia que quieres y ve el precio al instante.",f3h:"Alerta de pérdida",f3p:"Escribe el precio que cobras hoy y descubre si estás perdiendo dinero.",
+f4h:"Presupuesto por WhatsApp",f4p:"Arma el pedido con envío y descuento y envíalo con un toque.",f5h:"Español y portugués",f5p:"Funciona en pesos, dólares, reales y 8 monedas más.",f6h:"Hecho para el celular",f6p:"Úsalo en la cocina, con una mano, sin instalar nada.",
+priceH:"Planes",priceS:"Empieza gratis. Cuando quieras todo desbloqueado, entra como fundadora con precio congelado para siempre.",
+freeAmt:"US$ 0",fr1:"Hasta 5 productos",fr2:"Calculadora completa",fr3:"Presupuesto con la marca Margo",
+tag:"Solo 100 lugares",founderH:"Plan Fundadora",founderAmt:"US$ 39",perYear:"/año",founderOld:"Después del lanzamiento: US$ 59/año",
+fo1:"Productos ilimitados",fo2:"Presupuesto con el nombre de tu negocio",fo3:"Precio congelado mientras sigas suscrita",fo4:"Acceso anticipado a todas las novedades",fo5:"Grupo de fundadoras con revisión de precios",
+ctaBuy:"Quiero ser fundadora",guarantee:"Garantía de 30 días: si no te gusta, te devolvemos el 100%.",
+faqH:"Preguntas frecuentes",q1:"¿Necesito saber de hojas de cálculo?",a1:"No. Solo escribes lo que compraste y cuánto usaste. Margo hace las cuentas.",
+q2:"¿Sirve para bocadillos, comida y otros productos?",a2:"Sí. Cualquier producto hecho con ingredientes, empaque y tiempo de trabajo.",
+q3:"¿Mis datos están seguros?",a3:"En la versión beta tus datos se guardan en tu propio dispositivo. Puedes copiar un respaldo cuando quieras.",
+q4:"¿Y si no me gusta el plan pago?",a4:"Tienes 30 días para pedir el reembolso completo, sin preguntas.",q5:"¿Margo garantiza que voy a ganar más?",a5:"No prometemos ingresos. Margo te muestra tus números con claridad; la decisión de precio es tuya.",
+wa:"¿Dudas? WhatsApp",waMsg:"¡Hola! Vi Margo y quiero saber más."},
+en:{eyebrow:"For home bakers and cottage food sellers",h1:"Find out in 5 minutes which bakes make you money, and which lose it",
+lead:"Margo works out the true cost of every recipe (ingredients, packaging, your time and your monthly bills) and shows the right price. Then it builds the customer quote and sends it by text or WhatsApp.",
+ctaFree:"Try it free",ctaPlans:"See plans",noCard:"No card needed. Works on your phone.",
+calcTitle:"Quick price check",calcSub:"Swap in the numbers from your recipe.",fIng:"Ingredients for the batch ($)",fYield:"Units per batch",fPack:"Packaging per unit ($)",
+fMin:"Working time (min)",fHour:"Your hour is worth ($)",fNow:"What you charge today ($)",rK:"Suggested price per unit (30% profit)",
+cost:"True cost",profit:"profit",loss:"You are losing {v} on every unit.",thin:"Your profit today is only {p}%. You can charge more.",good:"Your price is healthy: {p}% profit.",
+painH:"If any of these sound like you, Margo is for you",p1:"“I sell a lot, but there's nothing left at the end of the month.”",p2:"“I charge what other bakers charge because I never did the math.”",p3:"“I forget to count packaging, gas and my own time.”",p4:"“I feel bad raising my prices.”",
+howH:"How it works",howS:"No spreadsheets, no formulas.",s1h:"Add what you buy",s1p:"Flour, butter, boxes: what you paid and the package size.",
+s2h:"Build the recipe",s2p:"How much of each ingredient, how many it makes and how long it takes.",s3h:"See the right price",s3p:"Margo shows cost, suggested price and profit, and warns you if you're losing money.",
+featH:"Everything you need to price with confidence",f1h:"True cost per unit",f1p:"Ingredients, packaging, your labor and monthly overhead, split the right way.",
+f2h:"Suggested price",f2p:"Pick the profit you want and see the price instantly.",f3h:"Loss alert",f3p:"Enter what you charge today and see if you're losing money.",
+f4h:"Quotes in one tap",f4p:"Build the order with delivery and discount, then send it by text or WhatsApp.",f5h:"Any currency",f5p:"Dollars, pounds, euros and 8 more, in English, Spanish or Portuguese.",f6h:"Made for your phone",f6p:"Use it in the kitchen, one-handed, nothing to install.",
+priceH:"Plans",priceS:"Start free. When you want everything unlocked, join as a founding member and lock in your price for good.",
+freeAmt:"$0",fr1:"Up to 5 products",fr2:"Full calculator",fr3:"Quotes with Margo branding",
+tag:"Only 100 spots",founderH:"Founding Member",founderAmt:"$49",perYear:"/year",founderOld:"After launch: $79/year",
+fo1:"Unlimited products",fo2:"Quotes with your bakery's name",fo3:"Price locked for as long as you stay",fo4:"Early access to every new feature",fo5:"Founders' community with price reviews",
+ctaBuy:"Become a founding member",guarantee:"30-day money-back guarantee, no questions asked.",
+faqH:"Questions",q1:"Do I need to know spreadsheets?",a1:"No. Just type what you bought and how much you used. Margo does the math.",
+q2:"Does it work for cookies, bread and other products?",a2:"Yes. Anything made with ingredients, packaging and working time.",
+q3:"Is my data safe?",a3:"In the beta, your data is saved on your own device. You can copy a backup at any time.",
+q4:"What if I don't like the paid plan?",a4:"You have 30 days to ask for a full refund, no questions asked.",q5:"Does Margo guarantee I'll earn more?",a5:"We don't promise income. Margo shows your numbers clearly; the pricing decision is yours.",
+wa:"Questions? Chat with us",waMsg:"Hi! I saw Margo and I'd like to know more."}};
+const NL=(navigator.language||"pt").slice(0,2);
+let L=(new URLSearchParams(location.search).get("lang"))||(NL==="es"?"es":NL==="pt"?"pt":"en");
+if(!T[L])L="pt";
+const n=v=>{const x=parseFloat(String(v).replace(",","."));return isFinite(x)?x:0};
+function fmt(v){return new Intl.NumberFormat({pt:"pt-BR",es:"es-419",en:"en-US"}[L],{style:"currency",currency:L==="pt"?"BRL":"USD"}).format(v)}
+const DEF={pt:{cI:"28.50",cY:"25",cP:"0.10",cM:"90",cH:"20",cN:"2.50"},es:{cI:"9.50",cY:"25",cP:"0.05",cM:"90",cH:"6",cN:"0.80"},en:{cI:"9.50",cY:"24",cP:"0.15",cM:"90",cH:"18",cN:"1.50"}};
+let dirty=false;
+function calc(){
+  const ing=n(cI.value),y=Math.max(1,n(cY.value)),pk=n(cP.value),m=n(cM.value),h=n(cH.value),now=n(cN.value);
+  const cost=(ing+h*m/60)/y+pk, price=Math.ceil(cost/0.7*100)/100;
+  rV.textContent=fmt(price);rD.textContent=`${T[L].cost}: ${fmt(cost)} · ${T[L].profit}: ${fmt(price-cost)}`;
+  const x=document.getElementById("rX");
+  if(now>0){const pr=now-cost,p=Math.round(pr/now*100);x.style.display="block";
+    if(pr<0){x.style.background="var(--badbg)";x.style.color="var(--bad)";x.textContent=T[L].loss.replace("{v}",fmt(-pr));}
+    else if(p<15){x.style.background="#FEF3C7";x.style.color="#B45309";x.textContent=T[L].thin.replace("{p}",p);}
+    else{x.style.background="var(--okbg)";x.style.color="var(--ok)";x.textContent=T[L].good.replace("{p}",p);}
+  } else x.style.display="none";
+}
+function render(){
+  document.documentElement.lang=L;
+  document.querySelectorAll("[data-t]").forEach(e=>e.textContent=T[L][e.dataset.t]);
+  document.querySelectorAll(".lang button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.l===L));
+  const app=CONFIG.appUrl+(CONFIG.appUrl.includes("?")?"&":"?")+CONFIG.utm;
+  ctaApp.href=app;ctaApp2.href=app;
+  ctaBuy.href=CONFIG.buyUrl[L];ctaBuy.target="_blank";ctaBuy.rel="noopener";
+  if(!dirty)for(const k in DEF[L])document.getElementById(k).value=DEF[L][k];
+  calc();
+}
+document.querySelectorAll(".lang button").forEach(b=>b.onclick=()=>{L=b.dataset.l;render();});
+["cI","cY","cP","cM","cH","cN"].forEach(id=>document.getElementById(id).addEventListener("input",()=>{dirty=true;calc();}));
+render();
+</script>
+</body>
+</html>

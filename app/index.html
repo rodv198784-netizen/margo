@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Margo — precificação para quem vende comida feita em casa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FBF7F2; --card:#FFFFFF; --ink:#2A2220; --muted:#7A6E68; --line:#EADFD6;
+  --brand:#C2410C; --brand-ink:#FFFFFF; --brand-soft:#FDEBDD; --ok:#15803D; --ok-soft:#DCFCE7;
+  --warn:#B45309; --warn-soft:#FEF3C7; --bad:#B91C1C; --bad-soft:#FEE2E2;
+  --radius:16px; --shadow:0 1px 2px rgba(42,34,32,.06),0 4px 16px rgba(42,34,32,.06);
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,sans-serif;font-size:16px;line-height:1.45;-webkit-text-size-adjust:100%}
+button,input,select,textarea{font:inherit;color:inherit}
+.wrap{max-width:760px;margin:0 auto;padding:16px 16px 110px}
+header.top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:6px 0 14px}
+.logo{display:flex;align-items:center;gap:10px}
+.logo-mark{width:38px;height:38px;border-radius:12px;background:var(--brand);display:grid;place-items:center;color:#fff;font-family:Fraunces,serif;font-weight:700;font-size:22px}
+.logo h1{font-family:Fraunces,serif;font-size:24px;margin:0;letter-spacing:-.01em}
+.logo small{display:block;color:var(--muted);font-size:12.5px;margin-top:-2px}
+.lang{display:flex;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:3px}
+.lang button{border:0;background:none;padding:6px 10px;border-radius:999px;font-size:13px;font-weight:600;color:var(--muted);cursor:pointer}
+.lang button[aria-pressed=true]{background:var(--ink);color:#fff}
+.beta{background:var(--brand-soft);color:var(--brand);border-radius:12px;padding:10px 14px;font-size:14px;margin-bottom:14px}
+nav.tabs{position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);border-top:1px solid var(--line);display:flex;justify-content:center;z-index:20;padding-bottom:env(safe-area-inset-bottom)}
+nav.tabs .in{display:flex;max-width:760px;width:100%}
+nav.tabs button{flex:1;border:0;background:none;padding:10px 4px 12px;font-size:12px;font-weight:600;color:var(--muted);cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:3px}
+nav.tabs button svg{width:22px;height:22px}
+nav.tabs button[aria-current=page]{color:var(--brand)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow);margin-bottom:14px}
+h2{font-family:Fraunces,serif;font-size:22px;margin:4px 0 4px}
+h3{font-size:16px;margin:0 0 10px}
+p.sub{color:var(--muted);margin:0 0 14px;font-size:14.5px}
+label{display:block;font-size:13px;font-weight:600;color:var(--muted);margin:0 0 4px}
+.field{margin-bottom:12px}
+input,select,textarea{width:100%;border:1px solid var(--line);background:#fff;border-radius:12px;padding:11px 12px;font-size:16px;outline:none}
+input:focus,select:focus,textarea:focus{border-color:var(--brand);box-shadow:0 0 0 3px var(--brand-soft)}
+.row{display:grid;gap:10px}
+.r2{grid-template-columns:1fr 1fr}.r3{grid-template-columns:1fr 1fr 1fr}
+@media (max-width:520px){.r3{grid-template-columns:1fr 1fr}.r3>.full{grid-column:1/-1}}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:12px;padding:12px 16px;font-weight:600;cursor:pointer;background:var(--brand);color:var(--brand-ink);font-size:15px;text-decoration:none}
+.btn.ghost{background:transparent;color:var(--brand);border:1px solid var(--brand)}
+.btn.quiet{background:#F3ECE6;color:var(--ink)}
+.btn.danger{background:var(--bad-soft);color:var(--bad)}
+.btn.wide{width:100%}
+.btn.sm{padding:8px 12px;font-size:14px;border-radius:10px}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
+.list{display:flex;flex-direction:column;gap:10px}
+.item{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 14px;border:1px solid var(--line);border-radius:14px;background:#fff;cursor:pointer;text-align:left;width:100%}
+.item:hover{border-color:#D8C7BA}
+.item .t{font-weight:600}
+.item .m{color:var(--muted);font-size:13.5px}
+.item .p{font-weight:700;white-space:nowrap}
+.empty{color:var(--muted);text-align:center;padding:26px 10px;font-size:14.5px}
+.pill{display:inline-block;font-size:12px;font-weight:700;padding:3px 8px;border-radius:999px}
+.pill.ok{background:var(--ok-soft);color:var(--ok)}.pill.warn{background:var(--warn-soft);color:var(--warn)}.pill.bad{background:var(--bad-soft);color:var(--bad)}
+.ing-line{display:grid;grid-template-columns:1fr 96px 74px 36px;gap:8px;align-items:center;margin-bottom:8px}
+.ing-line .x{border:0;background:#F3ECE6;border-radius:10px;height:44px;cursor:pointer;font-size:18px;color:var(--muted)}
+.summary{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.stat{background:#FBF7F2;border:1px solid var(--line);border-radius:14px;padding:12px}
+.stat .k{font-size:12.5px;color:var(--muted);font-weight:600}
+.stat .v{font-size:20px;font-weight:700;margin-top:2px}
+.hero-price{background:var(--ink);color:#fff;border-radius:16px;padding:16px;margin:12px 0}
+.hero-price .k{opacity:.75;font-size:13px;font-weight:600}
+.hero-price .v{font-family:Fraunces,serif;font-size:36px;font-weight:700;line-height:1.1;margin-top:4px}
+.hero-price .s{opacity:.8;font-size:13.5px;margin-top:4px}
+.breakdown{width:100%;border-collapse:collapse;font-size:14.5px}
+.breakdown td{padding:8px 0;border-bottom:1px dashed var(--line)}
+.breakdown td:last-child{text-align:right;font-weight:600}
+.breakdown tr.total td{border-bottom:0;font-weight:700;padding-top:10px}
+.quote-line{display:grid;grid-template-columns:1fr 80px 36px;gap:8px;align-items:center;margin-bottom:8px}
+.preview{white-space:pre-wrap;background:#FBF7F2;border:1px solid var(--line);border-radius:14px;padding:14px;font-size:14.5px}
+.modal{position:fixed;inset:0;background:rgba(42,34,32,.45);display:none;align-items:flex-end;justify-content:center;z-index:50}
+.modal.open{display:flex}
+.sheet{background:var(--bg);width:100%;max-width:760px;max-height:92vh;overflow:auto;border-radius:20px 20px 0 0;padding:18px 16px 28px}
+@media (min-width:700px){.modal{align-items:center}.sheet{border-radius:20px}}
+.sheet-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.close{border:0;background:#F3ECE6;width:36px;height:36px;border-radius:50%;font-size:20px;cursor:pointer;color:var(--muted)}
+.toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:var(--ink);color:#fff;padding:10px 16px;border-radius:999px;font-size:14px;opacity:0;transition:opacity .2s;pointer-events:none;z-index:60}
+.toast.show{opacity:1}
+.hint{font-size:13px;color:var(--muted);margin-top:4px}
+.tiny{font-size:12.5px;color:var(--muted)}
+.split{display:flex;justify-content:space-between;align-items:center;gap:10px}
+hr{border:0;border-top:1px solid var(--line);margin:14px 0}
+footer.f{color:var(--muted);font-size:12.5px;text-align:center;margin-top:20px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="logo">
+      <div class="logo-mark" aria-hidden="true">m</div>
+      <div><h1>Margo</h1><small data-t="tagline"></small></div>
+    </div>
+    <div class="lang" role="group" aria-label="Language">
+      <button data-lang="pt">PT</button><button data-lang="es">ES</button><button data-lang="en">EN</button>
+    </div>
+  </header>
+  <div class="beta" data-t="beta"></div>
+  <main id="view"></main>
+  <footer class="f">Margo · by V Global Ventures · <span data-t="localNote"></span></footer>
+</div>
+
+<nav class="tabs"><div class="in">
+  <button data-tab="products"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 11h16v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-8z"/><path d="M6 11V9a6 6 0 0 1 12 0v2"/></svg><span data-t="tabProducts"></span></button>
+  <button data-tab="ingredients"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3h8l-1 4H9z"/><path d="M7 7h10l1 14H6z"/></svg><span data-t="tabIngredients"></span></button>
+  <button data-tab="quote"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3h9l3 3v15H6z"/><path d="M9 11h6M9 15h6M9 7h3"/></svg><span data-t="tabQuote"></span></button>
+  <button data-tab="settings"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg><span data-t="tabSettings"></span></button>
+</div></nav>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true"><div class="sheet" id="sheet"></div></div>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+/* ===================== i18n ===================== */
+const I18N = {
+ pt:{tagline:"Saiba quanto cobrar em 5 minutos",beta:"Versão beta gratuita. Seus dados ficam salvos só neste aparelho.",localNote:"dados salvos neste aparelho",
+  tabProducts:"Produtos",tabIngredients:"Ingredientes",tabQuote:"Orçamento",tabSettings:"Ajustes",
+  productsTitle:"Seus produtos",productsSub:"Cada produto mostra o custo real e o preço que você deveria cobrar.",newProduct:"Novo produto",
+  ingredientsTitle:"Ingredientes e embalagens",ingredientsSub:"Cadastre o que você compra e o preço que pagou. O Margo calcula o custo de cada grama.",newIngredient:"Novo ingrediente",
+  noProducts:"Nenhum produto ainda. Crie o primeiro ou carregue um exemplo.",noIngredients:"Nenhum ingrediente ainda.",loadExample:"Carregar exemplo",
+  name:"Nome",pkgPrice:"Preço pago",pkgQty:"Quantidade da embalagem",unit:"Unidade",save:"Salvar",cancel:"Cancelar",del:"Excluir",edit:"Editar",
+  costPer:"custo por",yield:"Rendimento (unidades)",ingredientsUsed:"Ingredientes usados",addLine:"+ Adicionar ingrediente",qty:"Qtd.",
+  packPerUnit:"Embalagem por unidade",laborMin:"Tempo de trabalho (minutos, receita inteira)",margin:"Lucro desejado (% do preço)",
+  extraCost:"Outros custos da receita (gás, luz etc.)",suggested:"Preço sugerido por unidade",perBatch:"por receita",
+  profitUnit:"Lucro por unidade",costUnit:"Custo por unidade",breakEven:"Preço mínimo (sem lucro)",
+  bIngredients:"Ingredientes",bPack:"Embalagens",bLabor:"Seu trabalho",bOverhead:"Custos fixos do negócio",bExtra:"Outros custos",bTotal:"Custo total da receita",
+  currentPrice:"Preço que você cobra hoje (opcional)",verdictLow:"Você está cobrando abaixo do custo: prejuízo de",verdictThin:"Seu lucro atual é baixo:",verdictGood:"Seu preço está saudável: lucro de",perUnitShort:"por unidade",
+  settingsTitle:"Ajustes do negócio",settingsSub:"Esses números entram no custo de todos os produtos.",bizName:"Nome do negócio",currency:"Moeda",
+  hourly:"Quanto vale sua hora de trabalho",fixedMonth:"Custos fixos por mês (aluguel, internet, MEI, apps…)",hoursMonth:"Horas trabalhadas por mês",
+  fixedHint:"Os custos fixos são divididos pelas horas trabalhadas e somados a cada receita conforme o tempo que ela leva.",
+  defMargin:"Lucro padrão para novos produtos (%)",backup:"Backup",backupSub:"Copie seus dados para guardar ou passar para outro aparelho.",copyBackup:"Copiar backup",restore:"Restaurar backup",pasteHere:"Cole aqui o backup",resetAll:"Apagar tudo",
+  quoteTitle:"Orçamento para cliente",quoteSub:"Monte o pedido e envie pronto pelo WhatsApp.",client:"Nome do cliente",product:"Produto",addItem:"+ Adicionar item",
+  delivery:"Taxa de entrega",discount:"Desconto",notes:"Observações",deadline:"Data de entrega",total:"Total",copy:"Copiar texto",whatsapp:"Enviar no WhatsApp",
+  quoteHeader:"ORÇAMENTO",quoteHello:"Olá",quoteThanks:"Obrigado pela preferência!",quoteValid:"Orçamento válido por 7 dias.",subtotal:"Subtotal",
+  copied:"Copiado!",saved:"Salvo!",deleted:"Excluído",confirmDelete:"Excluir mesmo?",yes:"Sim, excluir",no:"Não",needProducts:"Crie um produto antes de montar um orçamento.",
+  restoreOk:"Backup restaurado!",restoreBad:"Backup inválido.",confirmReset:"Apagar todos os dados deste aparelho?",exampleLoaded:"Exemplo carregado!",
+  required:"Preencha o nome.",units:{g:"g",kg:"kg",ml:"ml",l:"L",un:"un"},each:"cada",copyFail:"Não foi possível copiar. Selecione o texto e copie manualmente."},
+ es:{tagline:"Sabe cuánto cobrar en 5 minutos",beta:"Versión beta gratuita. Tus datos se guardan solo en este dispositivo.",localNote:"datos guardados en este dispositivo",
+  tabProducts:"Productos",tabIngredients:"Ingredientes",tabQuote:"Presupuesto",tabSettings:"Ajustes",
+  productsTitle:"Tus productos",productsSub:"Cada producto muestra el costo real y el precio que deberías cobrar.",newProduct:"Nuevo producto",
+  ingredientsTitle:"Ingredientes y empaques",ingredientsSub:"Registra lo que compras y cuánto pagaste. Margo calcula el costo de cada gramo.",newIngredient:"Nuevo ingrediente",
+  noProducts:"Aún no hay productos. Crea el primero o carga un ejemplo.",noIngredients:"Aún no hay ingredientes.",loadExample:"Cargar ejemplo",
+  name:"Nombre",pkgPrice:"Precio pagado",pkgQty:"Cantidad del paquete",unit:"Unidad",save:"Guardar",cancel:"Cancelar",del:"Eliminar",edit:"Editar",
+  costPer:"costo por",yield:"Rendimiento (unidades)",ingredientsUsed:"Ingredientes usados",addLine:"+ Agregar ingrediente",qty:"Cant.",
+  packPerUnit:"Empaque por unidad",laborMin:"Tiempo de trabajo (minutos, receta completa)",margin:"Ganancia deseada (% del precio)",
+  extraCost:"Otros costos de la receta (gas, luz, etc.)",suggested:"Precio sugerido por unidad",perBatch:"por receta",
+  profitUnit:"Ganancia por unidad",costUnit:"Costo por unidad",breakEven:"Precio mínimo (sin ganancia)",
+  bIngredients:"Ingredientes",bPack:"Empaques",bLabor:"Tu trabajo",bOverhead:"Costos fijos del negocio",bExtra:"Otros costos",bTotal:"Costo total de la receta",
+  currentPrice:"Precio que cobras hoy (opcional)",verdictLow:"Estás cobrando por debajo del costo: pérdida de",verdictThin:"Tu ganancia actual es baja:",verdictGood:"Tu precio está sano: ganancia de",perUnitShort:"por unidad",
+  settingsTitle:"Ajustes del negocio",settingsSub:"Estos números entran en el costo de todos los productos.",bizName:"Nombre del negocio",currency:"Moneda",
+  hourly:"Cuánto vale tu hora de trabajo",fixedMonth:"Costos fijos por mes (alquiler, internet, impuestos, apps…)",hoursMonth:"Horas trabajadas por mes",
+  fixedHint:"Los costos fijos se dividen entre las horas trabajadas y se suman a cada receta según el tiempo que toma.",
+  defMargin:"Ganancia predeterminada para nuevos productos (%)",backup:"Respaldo",backupSub:"Copia tus datos para guardarlos o pasarlos a otro dispositivo.",copyBackup:"Copiar respaldo",restore:"Restaurar respaldo",pasteHere:"Pega aquí el respaldo",resetAll:"Borrar todo",
+  quoteTitle:"Presupuesto para cliente",quoteSub:"Arma el pedido y envíalo listo por WhatsApp.",client:"Nombre del cliente",product:"Producto",addItem:"+ Agregar ítem",
+  delivery:"Costo de envío",discount:"Descuento",notes:"Observaciones",deadline:"Fecha de entrega",total:"Total",copy:"Copiar texto",whatsapp:"Enviar por WhatsApp",
+  quoteHeader:"PRESUPUESTO",quoteHello:"¡Hola",quoteThanks:"¡Gracias por tu preferencia!",quoteValid:"Presupuesto válido por 7 días.",subtotal:"Subtotal",
+  copied:"¡Copiado!",saved:"¡Guardado!",deleted:"Eliminado",confirmDelete:"¿Eliminar de verdad?",yes:"Sí, eliminar",no:"No",needProducts:"Crea un producto antes de armar un presupuesto.",
+  restoreOk:"¡Respaldo restaurado!",restoreBad:"Respaldo inválido.",confirmReset:"¿Borrar todos los datos de este dispositivo?",exampleLoaded:"¡Ejemplo cargado!",
+  required:"Completa el nombre.",units:{g:"g",kg:"kg",ml:"ml",l:"L",un:"u"},each:"c/u",copyFail:"No se pudo copiar. Selecciona el texto y cópialo manualmente."},
+ en:{tagline:"Know what to charge in 5 minutes",beta:"Free beta. Your data is saved only on this device.",localNote:"data saved on this device",
+  tabProducts:"Products",tabIngredients:"Ingredients",tabQuote:"Quote",tabSettings:"Settings",
+  productsTitle:"Your products",productsSub:"Each product shows its real cost and the price you should charge.",newProduct:"New product",
+  ingredientsTitle:"Ingredients & packaging",ingredientsSub:"Add what you buy and what you paid. Margo works out the cost of every gram.",newIngredient:"New ingredient",
+  noProducts:"No products yet. Create your first one or load an example.",noIngredients:"No ingredients yet.",loadExample:"Load example",
+  name:"Name",pkgPrice:"Price paid",pkgQty:"Package size",unit:"Unit",save:"Save",cancel:"Cancel",del:"Delete",edit:"Edit",
+  costPer:"cost per",yield:"Yield (units)",ingredientsUsed:"Ingredients used",addLine:"+ Add ingredient",qty:"Qty",
+  packPerUnit:"Packaging per unit",laborMin:"Working time (minutes, whole batch)",margin:"Target profit (% of price)",
+  extraCost:"Other batch costs (gas, power, etc.)",suggested:"Suggested price per unit",perBatch:"per batch",
+  profitUnit:"Profit per unit",costUnit:"Cost per unit",breakEven:"Minimum price (no profit)",
+  bIngredients:"Ingredients",bPack:"Packaging",bLabor:"Your labor",bOverhead:"Business fixed costs",bExtra:"Other costs",bTotal:"Total batch cost",
+  currentPrice:"Price you charge today (optional)",verdictLow:"You are charging below cost: losing",verdictThin:"Your current profit is thin:",verdictGood:"Your price is healthy: profit of",perUnitShort:"per unit",
+  settingsTitle:"Business settings",settingsSub:"These numbers go into the cost of every product.",bizName:"Business name",currency:"Currency",
+  hourly:"What your working hour is worth",fixedMonth:"Monthly fixed costs (rent, internet, licenses, apps…)",hoursMonth:"Hours worked per month",
+  fixedHint:"Fixed costs are divided by your working hours and added to each batch based on how long it takes.",
+  defMargin:"Default profit for new products (%)",backup:"Backup",backupSub:"Copy your data to keep it safe or move it to another device.",copyBackup:"Copy backup",restore:"Restore backup",pasteHere:"Paste your backup here",resetAll:"Erase everything",
+  quoteTitle:"Customer quote",quoteSub:"Build the order and send it ready-made on WhatsApp.",client:"Customer name",product:"Product",addItem:"+ Add item",
+  delivery:"Delivery fee",discount:"Discount",notes:"Notes",deadline:"Delivery date",total:"Total",copy:"Copy text",whatsapp:"Send on WhatsApp",
+  quoteHeader:"QUOTE",quoteHello:"Hi",quoteThanks:"Thank you for your order!",quoteValid:"Quote valid for 7 days.",subtotal:"Subtotal",
+  copied:"Copied!",saved:"Saved!",deleted:"Deleted",confirmDelete:"Delete this?",yes:"Yes, delete",no:"No",needProducts:"Create a product before building a quote.",
+  restoreOk:"Backup restored!",restoreBad:"Invalid backup.",confirmReset:"Erase all data on this device?",exampleLoaded:"Example loaded!",
+  required:"Please enter a name.",units:{g:"g",kg:"kg",ml:"ml",l:"L",un:"pc"},each:"each",copyFail:"Couldn't copy. Select the text and copy it manually."}
+};
+const CURRENCIES=["BRL","USD","EUR","MXN","COP","ARS","CLP","PEN","GBP","CAD","AUD"];
+const LOCALE={pt:"pt-BR",es:"es-419",en:"en-US"};
+
+/* ===================== state ===================== */
+const KEY="margo.v1";
+function defaultState(lang){
+  const cur={pt:"BRL",es:"MXN",en:"USD"}[lang]||"USD";
+  return {lang, settings:{biz:"",currency:cur,hourly:{BRL:20,MXN:80,USD:18}[cur]||15,fixed:{BRL:300,MXN:1200,USD:150}[cur]||150,hours:120,margin:30},
+          ingredients:[], products:[], quote:{client:"",items:[],delivery:0,discount:0,notes:"",deadline:""}};
+}
+function detectLang(){const n=(navigator.language||"en").slice(0,2);return ["pt","es","en"].includes(n)?n:"en";}
+let S;
+function load(){try{const r=localStorage.getItem(KEY);if(r){const p=JSON.parse(r);if(p&&p.settings)return p;}}catch(e){}return defaultState(detectLang());}
+function persist(){try{localStorage.setItem(KEY,JSON.stringify(S));}catch(e){}}
+S=load();
+const uid=()=>Math.random().toString(36).slice(2,10);
+const t=k=>(I18N[S.lang]||I18N.en)[k]??k;
+const num=v=>{const n=parseFloat(String(v).replace(",","."));return isFinite(n)?n:0;};
+const money=v=>{try{return new Intl.NumberFormat(LOCALE[S.lang],{style:"currency",currency:S.settings.currency}).format(v||0);}catch(e){return (v||0).toFixed(2);}};
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+
+/* ===================== units & math ===================== */
+// base units: mass -> g, volume -> ml, count -> un
+const BASE={g:["g",1],kg:["g",1000],ml:["ml",1],l:["ml",1000],un:["un",1]};
+function toBase(qty,unit){const b=BASE[unit]||BASE.un;return [qty*b[1],b[0]];}
+function ingCostPerBase(ing){const [q]=toBase(num(ing.qty),ing.unit);return q>0?num(ing.price)/q:0;}
+function compatibleUnits(unit){const base=(BASE[unit]||BASE.un)[0];return Object.keys(BASE).filter(u=>BASE[u][0]===base);}
+function calc(p){
+  const st=S.settings;
+  let ingCost=0;
+  (p.lines||[]).forEach(l=>{const ing=S.ingredients.find(i=>i.id===l.ing);if(!ing)return;const [q,b]=toBase(num(l.qty),l.unit||ing.unit);const [,ib]=toBase(1,ing.unit);if(b!==ib)return;ingCost+=q*ingCostPerBase(ing);});
+  const y=Math.max(1,num(p.yield));
+  const pack=num(p.pack)*y;
+  const minutes=num(p.minutes);
+  const labor=num(st.hourly)*minutes/60;
+  const overheadRate=num(st.hours)>0?num(st.fixed)/num(st.hours):0;
+  const overhead=overheadRate*minutes/60;
+  const extra=num(p.extra);
+  const total=ingCost+pack+labor+overhead+extra;
+  const unitCost=total/y;
+  const m=Math.min(Math.max(num(p.margin),0),95)/100;
+  const price=unitCost/(1-m);
+  const priceR=Math.ceil(price*100)/100;
+  const profit=priceR-unitCost;
+  const cur=num(p.current);
+  return {ingCost,pack,labor,overhead,extra,total,unitCost,price:priceR,profit,y,cur,curProfit:cur?cur-unitCost:null};
+}
+
+/* ===================== UI helpers ===================== */
+function toast(msg){const el=document.getElementById("toast");el.textContent=msg;el.classList.add("show");clearTimeout(toast._t);toast._t=setTimeout(()=>el.classList.remove("show"),1800);}
+function openModal(html){document.getElementById("sheet").innerHTML=html;document.getElementById("modal").classList.add("open");}
+function closeModal(){document.getElementById("modal").classList.remove("open");}
+document.getElementById("modal").addEventListener("click",e=>{if(e.target.id==="modal")closeModal();});
+function confirmBox(msg,onYes){
+  openModal(`<div class="sheet-head"><h3 style="margin:0">${esc(msg)}</h3></div><div class="actions"><button class="btn danger" id="cy">${t("yes")}</button><button class="btn quiet" id="cn">${t("no")}</button></div>`);
+  document.getElementById("cy").onclick=()=>{closeModal();onYes();};document.getElementById("cn").onclick=closeModal;
+}
+async function copyText(txt){try{await navigator.clipboard.writeText(txt);toast(t("copied"));}catch(e){toast(t("copyFail"));}}
+function unitOptions(sel,list){return (list||Object.keys(BASE)).map(u=>`<option value="${u}" ${u===sel?"selected":""}>${I18N[S.lang].units[u]}</option>`).join("");}
+
+/* ===================== routing ===================== */
+let tab=(location.hash||"").replace("#","")||"products";
+if(!["products","ingredients","quote","settings"].includes(tab))tab="products";
+function go(x){tab=x;try{history.replaceState(null,"","#"+x);}catch(e){}render();}
+document.querySelectorAll("nav.tabs button").forEach(b=>b.onclick=()=>go(b.dataset.tab));
+document.querySelectorAll(".lang button").forEach(b=>b.onclick=()=>{S.lang=b.dataset.lang;persist();render();});
+window.addEventListener("hashchange",()=>{const h=location.hash.replace("#","");if(h&&h!==tab&&["products","ingredients","quote","settings"].includes(h)){tab=h;render();}});
+
+function render(){
+  document.documentElement.lang=S.lang;
+  document.querySelectorAll("[data-t]").forEach(el=>el.textContent=t(el.dataset.t));
+  document.querySelectorAll(".lang button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.lang===S.lang));
+  document.querySelectorAll("nav.tabs button").forEach(b=>b.toggleAttribute("aria-current",b.dataset.tab===tab)||b.dataset.tab===tab&&b.setAttribute("aria-current","page"));
+  document.querySelectorAll("nav.tabs button").forEach(b=>{if(b.dataset.tab===tab)b.setAttribute("aria-current","page");else b.removeAttribute("aria-current");});
+  ({products:viewProducts,ingredients:viewIngredients,quote:viewQuote,settings:viewSettings})[tab]();
+  window.scrollTo(0,0);
+}
+
+/* ===================== Products ===================== */
+function verdictPill(c){
+  if(c.curProfit===null)return "";
+  const pct=c.cur>0?c.curProfit/c.cur:0;
+  if(c.curProfit<0)return `<span class="pill bad">−${money(-c.curProfit)}</span>`;
+  if(pct<0.15)return `<span class="pill warn">${Math.round(pct*100)}%</span>`;
+  return `<span class="pill ok">${Math.round(pct*100)}%</span>`;
+}
+function viewProducts(){
+  const v=document.getElementById("view");
+  const items=S.products.map(p=>{const c=calc(p);return `<button class="item" data-id="${p.id}"><div><div class="t">${esc(p.name)}</div><div class="m">${t("costUnit")}: ${money(c.unitCost)} · ${c.y} un ${verdictPill(c)}</div></div><div class="p">${money(c.price)}</div></button>`;}).join("");
+  v.innerHTML=`<h2>${t("productsTitle")}</h2><p class="sub">${t("productsSub")}</p>
+   <div class="list">${items||`<div class="card empty">${t("noProducts")}</div>`}</div>
+   <div class="actions" style="margin-top:14px"><button class="btn" id="np">${t("newProduct")}</button>${S.products.length?"":`<button class="btn ghost" id="ex">${t("loadExample")}</button>`}</div>`;
+  v.querySelectorAll(".item").forEach(b=>b.onclick=()=>editProduct(b.dataset.id));
+  document.getElementById("np").onclick=()=>editProduct(null);
+  const ex=document.getElementById("ex");if(ex)ex.onclick=loadExample;
+}
+function editProduct(id){
+  const orig=S.products.find(p=>p.id===id);
+  const p=orig?JSON.parse(JSON.stringify(orig)):{id:uid(),name:"",yield:10,lines:[],pack:0,minutes:60,margin:S.settings.margin,extra:0,current:""};
+  const draw=()=>{
+    const c=calc(p);
+    const lines=p.lines.map((l,i)=>{const ing=S.ingredients.find(x=>x.id===l.ing);const units=ing?compatibleUnits(ing.unit):Object.keys(BASE);
+      return `<div class="ing-line"><select data-i="${i}" data-k="ing">${S.ingredients.map(x=>`<option value="${x.id}" ${x.id===l.ing?"selected":""}>${esc(x.name)}</option>`).join("")}</select>
+      <input inputmode="decimal" data-i="${i}" data-k="qty" value="${esc(l.qty)}" placeholder="${t("qty")}"><select data-i="${i}" data-k="unit">${unitOptions(l.unit,units)}</select><button class="x" data-rm="${i}" aria-label="${t("del")}">×</button></div>`;}).join("");
+    let verdict="";
+    if(c.curProfit!==null){
+      const pct=c.cur>0?Math.round(c.curProfit/c.cur*100):0;
+      if(c.curProfit<0)verdict=`<div class="beta" style="background:var(--bad-soft);color:var(--bad)">${t("verdictLow")} ${money(-c.curProfit)} ${t("perUnitShort")}.</div>`;
+      else if(pct<15)verdict=`<div class="beta" style="background:var(--warn-soft);color:var(--warn)">${t("verdictThin")} ${money(c.curProfit)} ${t("perUnitShort")} (${pct}%).</div>`;
+      else verdict=`<div class="beta" style="background:var(--ok-soft);color:var(--ok)">${t("verdictGood")} ${money(c.curProfit)} ${t("perUnitShort")} (${pct}%).</div>`;
+    }
+    openModal(`<div class="sheet-head"><h2 style="margin:0">${esc(p.name)||t("newProduct")}</h2><button class="close" id="cl" aria-label="close">×</button></div>
+     <div class="field"><label>${t("name")}</label><input id="pn" value="${esc(p.name)}"></div>
+     <div class="row r2"><div class="field"><label>${t("yield")}</label><input inputmode="decimal" id="py" value="${esc(p.yield)}"></div>
+       <div class="field"><label>${t("margin")}</label><input inputmode="decimal" id="pm" value="${esc(p.margin)}"></div></div>
+     <h3 style="margin-top:4px">${t("ingredientsUsed")}</h3>
+     ${S.ingredients.length?lines:`<p class="tiny">${t("noIngredients")}</p>`}
+     ${S.ingredients.length?`<button class="btn quiet sm" id="al">${t("addLine")}</button>`:""}
+     <hr>
+     <div class="row r3"><div class="field"><label>${t("packPerUnit")}</label><input inputmode="decimal" id="pp" value="${esc(p.pack)}"></div>
+       <div class="field"><label>${t("laborMin")}</label><input inputmode="decimal" id="pt" value="${esc(p.minutes)}"></div>
+       <div class="field full"><label>${t("extraCost")}</label><input inputmode="decimal" id="pe" value="${esc(p.extra)}"></div></div>
+     <div class="hero-price"><div class="k">${t("suggested")}</div><div class="v" id="hv">${money(c.price)}</div>
+       <div class="s" id="hs">${t("costUnit")}: ${money(c.unitCost)} · ${t("profitUnit")}: ${money(c.profit)} · ${money(c.price*c.y)} ${t("perBatch")}</div></div>
+     <table class="breakdown" id="bd"></table>
+     <div class="field" style="margin-top:12px"><label>${t("currentPrice")}</label><input inputmode="decimal" id="pc" value="${esc(p.current)}"></div>
+     <div id="vd">${verdict}</div>
+     <div class="actions"><button class="btn" id="sv">${t("save")}</button>${orig?`<button class="btn danger" id="dl">${t("del")}</button>`:""}<button class="btn quiet" id="cc">${t("cancel")}</button></div>`);
+    drawBreakdown(c);
+    const sh=document.getElementById("sheet");
+    const bind=(idx,key)=>e=>{p[key]=e.target.value;refresh();};
+    document.getElementById("pn").oninput=e=>{p.name=e.target.value;};
+    document.getElementById("py").oninput=bind(0,"yield");document.getElementById("pm").oninput=bind(0,"margin");
+    document.getElementById("pp").oninput=bind(0,"pack");document.getElementById("pt").oninput=bind(0,"minutes");
+    document.getElementById("pe").oninput=bind(0,"extra");document.getElementById("pc").oninput=bind(0,"current");
+    sh.querySelectorAll("[data-k]").forEach(el=>{
+      const ev=el.tagName==="SELECT"?"onchange":"oninput";
+      el[ev]=e=>{const i=+el.dataset.i,k=el.dataset.k;p.lines[i][k]=e.target.value;
+        if(k==="ing"){const ing=S.ingredients.find(x=>x.id===e.target.value);if(ing&&!compatibleUnits(ing.unit).includes(p.lines[i].unit))p.lines[i].unit=ing.unit==="kg"?"g":ing.unit==="l"?"ml":ing.unit;draw();return;}
+        refresh();};
+    });
+    sh.querySelectorAll("[data-rm]").forEach(b=>b.onclick=()=>{p.lines.splice(+b.dataset.rm,1);draw();});
+    const al=document.getElementById("al");if(al)al.onclick=()=>{const ing=S.ingredients[0];p.lines.push({ing:ing.id,qty:"",unit:ing.unit==="kg"?"g":ing.unit==="l"?"ml":ing.unit});draw();};
+    document.getElementById("cl").onclick=closeModal;document.getElementById("cc").onclick=closeModal;
+    document.getElementById("sv").onclick=()=>{if(!p.name.trim()){toast(t("required"));return;}
+      if(orig)Object.assign(orig,p);else S.products.push(p);persist();closeModal();toast(t("saved"));render();};
+    const dl=document.getElementById("dl");if(dl)dl.onclick=()=>confirmBox(t("confirmDelete"),()=>{S.products=S.products.filter(x=>x.id!==p.id);persist();toast(t("deleted"));render();});
+  };
+  const refresh=()=>{const c=calc(p);
+    document.getElementById("hv").textContent=money(c.price);
+    document.getElementById("hs").textContent=`${t("costUnit")}: ${money(c.unitCost)} · ${t("profitUnit")}: ${money(c.profit)} · ${money(c.price*c.y)} ${t("perBatch")}`;
+    drawBreakdown(c);
+    let verdict="";
+    if(c.curProfit!==null){const pct=c.cur>0?Math.round(c.curProfit/c.cur*100):0;
+      if(c.curProfit<0)verdict=`<div class="beta" style="background:var(--bad-soft);color:var(--bad)">${t("verdictLow")} ${money(-c.curProfit)} ${t("perUnitShort")}.</div>`;
+      else if(pct<15)verdict=`<div class="beta" style="background:var(--warn-soft);color:var(--warn)">${t("verdictThin")} ${money(c.curProfit)} ${t("perUnitShort")} (${pct}%).</div>`;
+      else verdict=`<div class="beta" style="background:var(--ok-soft);color:var(--ok)">${t("verdictGood")} ${money(c.curProfit)} ${t("perUnitShort")} (${pct}%).</div>`;}
+    document.getElementById("vd").innerHTML=verdict;
+  };
+  draw();
+}
+function drawBreakdown(c){
+  document.getElementById("bd").innerHTML=[
+    [t("bIngredients"),c.ingCost],[t("bPack"),c.pack],[t("bLabor"),c.labor],[t("bOverhead"),c.overhead],[t("bExtra"),c.extra]
+  ].map(r=>`<tr><td>${r[0]}</td><td>${money(r[1])}</td></tr>`).join("")+
+  `<tr class="total"><td>${t("bTotal")}</td><td>${money(c.total)}</td></tr><tr><td>${t("breakEven")}</td><td>${money(c.unitCost)}</td></tr>`;
+}
+
+/* ===================== Ingredients ===================== */
+function viewIngredients(){
+  const v=document.getElementById("view");
+  const items=S.ingredients.map(i=>{const [,b]=toBase(1,i.unit);const per=ingCostPerBase(i);
+    const shown=b==="un"?money(per):money(per*(b==="g"?1000:1000));
+    const lbl=b==="un"?I18N[S.lang].units.un:(b==="g"?"kg":"L");
+    return `<button class="item" data-id="${i.id}"><div><div class="t">${esc(i.name)}</div><div class="m">${money(num(i.price))} · ${esc(i.qty)} ${I18N[S.lang].units[i.unit]}</div></div><div class="p">${shown}<span class="tiny">/${lbl}</span></div></button>`;}).join("");
+  v.innerHTML=`<h2>${t("ingredientsTitle")}</h2><p class="sub">${t("ingredientsSub")}</p>
+    <div class="list">${items||`<div class="card empty">${t("noIngredients")}</div>`}</div>
+    <div class="actions" style="margin-top:14px"><button class="btn" id="ni">${t("newIngredient")}</button></div>`;
+  v.querySelectorAll(".item").forEach(b=>b.onclick=()=>editIngredient(b.dataset.id));
+  document.getElementById("ni").onclick=()=>editIngredient(null);
+}
+function editIngredient(id){
+  const orig=S.ingredients.find(i=>i.id===id);
+  const i=orig?{...orig}:{id:uid(),name:"",price:"",qty:"",unit:"g"};
+  openModal(`<div class="sheet-head"><h2 style="margin:0">${esc(i.name)||t("newIngredient")}</h2><button class="close" id="cl">×</button></div>
+    <div class="field"><label>${t("name")}</label><input id="in" value="${esc(i.name)}"></div>
+    <div class="row r3"><div class="field"><label>${t("pkgPrice")}</label><input inputmode="decimal" id="ip" value="${esc(i.price)}"></div>
+      <div class="field"><label>${t("pkgQty")}</label><input inputmode="decimal" id="iq" value="${esc(i.qty)}"></div>
+      <div class="field"><label>${t("unit")}</label><select id="iu">${unitOptions(i.unit)}</select></div></div>
+    <p class="hint" id="ih"></p>
+    <div class="actions"><button class="btn" id="sv">${t("save")}</button>${orig?`<button class="btn danger" id="dl">${t("del")}</button>`:""}<button class="btn quiet" id="cc">${t("cancel")}</button></div>`);
+  const hint=()=>{const per=ingCostPerBase(i);const [,b]=toBase(1,i.unit);const u=I18N[S.lang].units[b];
+    document.getElementById("ih").textContent=per>0?`${t("costPer")} ${b==="un"?u:"1 "+u}: ${new Intl.NumberFormat(LOCALE[S.lang],{style:"currency",currency:S.settings.currency,maximumFractionDigits:4}).format(per)}`:"";};
+  ["in","ip","iq"].forEach(k=>document.getElementById(k).oninput=e=>{i[{in:"name",ip:"price",iq:"qty"}[k]]=e.target.value;hint();});
+  document.getElementById("iu").onchange=e=>{i.unit=e.target.value;hint();};hint();
+  document.getElementById("cl").onclick=closeModal;document.getElementById("cc").onclick=closeModal;
+  document.getElementById("sv").onclick=()=>{if(!i.name.trim()){toast(t("required"));return;}
+    if(orig){
+      // keep recipe lines valid if unit family changed
+      if(BASE[orig.unit][0]!==BASE[i.unit][0])S.products.forEach(p=>p.lines.forEach(l=>{if(l.ing===i.id)l.unit=i.unit;}));
+      Object.assign(orig,i);
+    } else S.ingredients.push(i);
+    persist();closeModal();toast(t("saved"));render();};
+  const dl=document.getElementById("dl");if(dl)dl.onclick=()=>confirmBox(t("confirmDelete"),()=>{S.ingredients=S.ingredients.filter(x=>x.id!==i.id);S.products.forEach(p=>p.lines=p.lines.filter(l=>l.ing!==i.id));persist();toast(t("deleted"));render();});
+}
+
+/* ===================== Quote ===================== */
+function quoteText(){
+  const q=S.quote;let sub=0;const L=[];
+  const biz=S.settings.biz?`*${S.settings.biz}*\n`:"";
+  L.push(`${biz}${t("quoteHeader")}`);
+  if(q.client)L.push(`${t("quoteHello")}, ${q.client}!`);
+  L.push("");
+  q.items.forEach(it=>{const p=S.products.find(x=>x.id===it.p);if(!p)return;const c=calc(p);const qty=Math.max(0,num(it.qty));const val=c.price*qty;sub+=val;
+    L.push(`• ${qty} × ${p.name} (${money(c.price)} ${t("each")}) = ${money(val)}`);});
+  L.push("");
+  const del=num(q.delivery),dis=num(q.discount);
+  L.push(`${t("subtotal")}: ${money(sub)}`);
+  if(del)L.push(`${t("delivery")}: ${money(del)}`);
+  if(dis)L.push(`${t("discount")}: −${money(dis)}`);
+  L.push(`*${t("total")}: ${money(sub+del-dis)}*`);
+  if(q.deadline){let d=q.deadline;try{d=new Date(q.deadline+"T12:00:00").toLocaleDateString(LOCALE[S.lang]);}catch(e){}L.push(`${t("deadline")}: ${d}`);}
+  if(q.notes)L.push(`${t("notes")}: ${q.notes}`);
+  L.push("");L.push(t("quoteValid"));L.push(t("quoteThanks"));
+  return {text:L.join("\n"),total:sub+del-dis};
+}
+function viewQuote(){
+  const v=document.getElementById("view");const q=S.quote;
+  if(!S.products.length){v.innerHTML=`<h2>${t("quoteTitle")}</h2><p class="sub">${t("quoteSub")}</p><div class="card empty">${t("needProducts")}</div>`;return;}
+  q.items=q.items.filter(it=>S.products.some(p=>p.id===it.p));
+  if(!q.items.length)q.items.push({p:S.products[0].id,qty:1});
+  const lines=q.items.map((it,i)=>`<div class="quote-line"><select data-i="${i}" data-k="p">${S.products.map(p=>`<option value="${p.id}" ${p.id===it.p?"selected":""}>${esc(p.name)} — ${money(calc(p).price)}</option>`).join("")}</select>
+     <input inputmode="decimal" data-i="${i}" data-k="qty" value="${esc(it.qty)}"><button class="x" style="border:0;background:#F3ECE6;border-radius:10px;height:44px;cursor:pointer;font-size:18px;color:var(--muted)" data-rm="${i}">×</button></div>`).join("");
+  v.innerHTML=`<h2>${t("quoteTitle")}</h2><p class="sub">${t("quoteSub")}</p>
+   <div class="card">
+    <div class="field"><label>${t("client")}</label><input id="qc" value="${esc(q.client)}"></div>
+    <label>${t("product")} · ${t("qty")}</label>${lines}
+    <button class="btn quiet sm" id="qa">${t("addItem")}</button>
+    <hr>
+    <div class="row r3"><div class="field"><label>${t("delivery")}</label><input inputmode="decimal" id="qd" value="${esc(q.delivery)}"></div>
+     <div class="field"><label>${t("discount")}</label><input inputmode="decimal" id="qx" value="${esc(q.discount)}"></div>
+     <div class="field full"><label>${t("deadline")}</label><input type="date" id="qt" value="${esc(q.deadline)}"></div></div>
+    <div class="field"><label>${t("notes")}</label><textarea id="qn" rows="2">${esc(q.notes)}</textarea></div>
+   </div>
+   <div class="hero-price"><div class="k">${t("total")}</div><div class="v" id="qtot"></div></div>
+   <div class="preview" id="qprev"></div>
+   <div class="actions" style="margin-top:12px"><a class="btn" id="qw" target="_blank" rel="noopener">${t("whatsapp")}</a><button class="btn ghost" id="qcp">${t("copy")}</button></div>`;
+  const upd=()=>{const r=quoteText();document.getElementById("qprev").textContent=r.text;document.getElementById("qtot").textContent=money(r.total);
+    document.getElementById("qw").href="https://wa.me/?text="+encodeURIComponent(r.text);persist();};
+  v.querySelectorAll("[data-k]").forEach(el=>{const ev=el.tagName==="SELECT"?"onchange":"oninput";el[ev]=e=>{q.items[+el.dataset.i][el.dataset.k]=e.target.value;upd();};});
+  v.querySelectorAll("[data-rm]").forEach(b=>b.onclick=()=>{q.items.splice(+b.dataset.rm,1);persist();viewQuote();});
+  document.getElementById("qa").onclick=()=>{q.items.push({p:S.products[0].id,qty:1});persist();viewQuote();};
+  const map={qc:"client",qd:"delivery",qx:"discount",qt:"deadline",qn:"notes"};
+  Object.keys(map).forEach(k=>document.getElementById(k).oninput=e=>{q[map[k]]=e.target.value;upd();});
+  document.getElementById("qcp").onclick=()=>copyText(quoteText().text);
+  upd();
+}
+
+/* ===================== Settings ===================== */
+function viewSettings(){
+  const v=document.getElementById("view");const st=S.settings;
+  v.innerHTML=`<h2>${t("settingsTitle")}</h2><p class="sub">${t("settingsSub")}</p>
+   <div class="card">
+    <div class="field"><label>${t("bizName")}</label><input id="sb" value="${esc(st.biz)}"></div>
+    <div class="row r2"><div class="field"><label>${t("currency")}</label><select id="sc">${CURRENCIES.map(c=>`<option ${c===st.currency?"selected":""}>${c}</option>`).join("")}</select></div>
+     <div class="field"><label>${t("defMargin")}</label><input inputmode="decimal" id="sm" value="${esc(st.margin)}"></div></div>
+    <div class="field"><label>${t("hourly")}</label><input inputmode="decimal" id="sh" value="${esc(st.hourly)}"></div>
+    <div class="row r2"><div class="field"><label>${t("fixedMonth")}</label><input inputmode="decimal" id="sf" value="${esc(st.fixed)}"></div>
+     <div class="field"><label>${t("hoursMonth")}</label><input inputmode="decimal" id="shm" value="${esc(st.hours)}"></div></div>
+    <p class="hint">${t("fixedHint")}</p>
+   </div>
+   <div class="card"><h3>${t("backup")}</h3><p class="sub">${t("backupSub")}</p>
+    <div class="actions"><button class="btn quiet" id="bk">${t("copyBackup")}</button><button class="btn quiet" id="rs">${t("restore")}</button><button class="btn danger" id="rz">${t("resetAll")}</button></div>
+   </div>`;
+  const map={sb:"biz",sm:"margin",sh:"hourly",sf:"fixed",shm:"hours"};
+  Object.keys(map).forEach(k=>document.getElementById(k).oninput=e=>{st[map[k]]=e.target.value;persist();});
+  document.getElementById("sc").onchange=e=>{st.currency=e.target.value;persist();};
+  document.getElementById("bk").onclick=()=>copyText(JSON.stringify(S));
+  document.getElementById("rs").onclick=()=>{openModal(`<div class="sheet-head"><h3 style="margin:0">${t("restore")}</h3><button class="close" id="cl">×</button></div>
+     <textarea id="rt" rows="8" placeholder="${t("pasteHere")}"></textarea><div class="actions"><button class="btn" id="ro">${t("restore")}</button></div>`);
+    document.getElementById("cl").onclick=closeModal;
+    document.getElementById("ro").onclick=()=>{try{const p=JSON.parse(document.getElementById("rt").value);if(!p||!p.settings||!Array.isArray(p.products))throw 0;S=p;persist();closeModal();toast(t("restoreOk"));render();}catch(e){toast(t("restoreBad"));}};};
+  document.getElementById("rz").onclick=()=>confirmBox(t("confirmReset"),()=>{S=defaultState(S.lang);persist();render();});
+}
+
+/* ===================== Example data ===================== */
+function loadExample(){
+  const L=S.lang;
+  const N={pt:["Leite condensado","Chocolate em pó 50%","Manteiga","Granulado","Forminha nº 4","Brigadeiro gourmet"],
+           es:["Leche condensada","Cacao en polvo 50%","Mantequilla","Chispas de chocolate","Capacillo nº 4","Brigadeiro gourmet"],
+           en:["Sweetened condensed milk","Cocoa powder 50%","Butter","Chocolate sprinkles","Paper cup #4","Gourmet brigadeiro"]}[L];
+  const P={BRL:[8.5,14,12,9,6],MXN:[32,65,55,40,25],USD:[3.2,6.5,4.5,4,3]}[S.settings.currency]||[3.2,6.5,4.5,4,3];
+  const ing=[{id:uid(),name:N[0],price:P[0],qty:395,unit:"g"},{id:uid(),name:N[1],price:P[1],qty:200,unit:"g"},
+             {id:uid(),name:N[2],price:P[2],qty:200,unit:"g"},{id:uid(),name:N[3],price:P[3],qty:150,unit:"g"},
+             {id:uid(),name:N[4],price:P[4],qty:100,unit:"un"}];
+  S.ingredients.push(...ing);
+  S.products.push({id:uid(),name:N[5],yield:25,margin:S.settings.margin,pack:0,minutes:90,extra:{BRL:2,MXN:8}[S.settings.currency]||1,current:"",
+    lines:[{ing:ing[0].id,qty:790,unit:"g"},{ing:ing[1].id,qty:40,unit:"g"},{ing:ing[2].id,qty:20,unit:"g"},{ing:ing[3].id,qty:100,unit:"g"},{ing:ing[4].id,qty:25,unit:"un"}]});
+  persist();toast(t("exampleLoaded"));render();
+}
+
+render();
+</script>
+</body>
+</html>
