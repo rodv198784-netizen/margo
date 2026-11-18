@@ -251,6 +251,7 @@ function render(){
   if(!dirty)for(const k in DEF[L])document.getElementById(k).value=DEF[L][k];
   calc();
 }
+try{if(/^Europe\//.test(Intl.DateTimeFormat().resolvedOptions().timeZone)&&!/Lisbon|Madrid/.test(Intl.DateTimeFormat().resolvedOptions().timeZone)){Object.assign(T.en,{founderAmt:"€39",founderOld:"After launch: €59/year",freeAmt:"€0"});CONFIG.buyUrl.en="https://buy.stripe.com/cNi7sE4pfc8S2fg2Ym1oI04";}}catch(e){}
 document.querySelectorAll(".lang button").forEach(b=>b.onclick=()=>{L=b.dataset.l;render();});
 ["cI","cY","cP","cM","cH","cN"].forEach(id=>document.getElementById(id).addEventListener("input",()=>{dirty=true;calc();}));
 render();
