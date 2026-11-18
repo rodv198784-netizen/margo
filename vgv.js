@@ -2,7 +2,7 @@
 (function(){
 if(window.__vgv)return;window.__vgv=1;
 var P=location.pathname,Q=new URLSearchParams(location.search);
-var lang=(Q.get("lang")||document.documentElement.lang||navigator.language||"en").slice(0,2).toLowerCase();if(["pt","es","en","fr"].indexOf(lang)<0)lang="en";
+var pm=P.match(/\/(pt|es|en|fr)(\/|$)/);var lang=(Q.get("lang")||(pm&&pm[1])||document.documentElement.lang||navigator.language||"en").slice(0,2).toLowerCase();if(["pt","es","en","fr"].indexOf(lang)<0)lang="en";
 var slug=(P.match(/\/(products|free)\/([^\/]+)/)||[])[2]||(P.replace(/\//g,"")||"home");
 /* tracking */
 var E=[],t0=Date.now(),sent=false,mx=0;function ev(n){if(E.indexOf(n)<0)E.push(n);}ev("view");
