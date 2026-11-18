@@ -118,7 +118,7 @@ footer.f{color:var(--muted);font-size:12.5px;text-align:center;margin-top:20px}
 <script>
 /* ===================== i18n ===================== */
 const I18N = {
- pt:{tagline:"Saiba quanto cobrar em 5 minutos",beta:"Versão beta gratuita. Seus dados ficam salvos só neste aparelho.",localNote:"dados salvos neste aparelho",
+ pt:{proFoot:"Orçamento feito com Margo, o app de preço para confeitaria:",limitTitle:"Você chegou a 5 produtos 🎉",limitText:"O plano grátis guarda até 5 produtos. Entre como fundadora para ter produtos ilimitados e orçamentos com o nome do seu negócio, com preço travado para sempre.",limitCta:"Quero ser fundadora",later:"Agora não",planFree:"Plano grátis: até 5 produtos",planPro:"Plano Fundadora ativo ✓",seePlans:"Ver plano Fundadora",tagline:"Saiba quanto cobrar em 5 minutos",beta:"Versão beta gratuita. Seus dados ficam salvos só neste aparelho.",localNote:"dados salvos neste aparelho",
   tabProducts:"Produtos",tabIngredients:"Ingredientes",tabQuote:"Orçamento",tabSettings:"Ajustes",
   productsTitle:"Seus produtos",productsSub:"Cada produto mostra o custo real e o preço que você deveria cobrar.",newProduct:"Novo produto",
   ingredientsTitle:"Ingredientes e embalagens",ingredientsSub:"Cadastre o que você compra e o preço que pagou. O Margo calcula o custo de cada grama.",newIngredient:"Novo ingrediente",
@@ -140,7 +140,7 @@ const I18N = {
   copied:"Copiado!",saved:"Salvo!",deleted:"Excluído",confirmDelete:"Excluir mesmo?",yes:"Sim, excluir",no:"Não",needProducts:"Crie um produto antes de montar um orçamento.",
   restoreOk:"Backup restaurado!",restoreBad:"Backup inválido.",confirmReset:"Apagar todos os dados deste aparelho?",exampleLoaded:"Exemplo carregado!",
   required:"Preencha o nome.",units:{g:"g",kg:"kg",ml:"ml",l:"L",un:"un"},each:"cada",copyFail:"Não foi possível copiar. Selecione o texto e copie manualmente."},
- es:{tagline:"Sabe cuánto cobrar en 5 minutos",beta:"Versión beta gratuita. Tus datos se guardan solo en este dispositivo.",localNote:"datos guardados en este dispositivo",
+ es:{proFoot:"Presupuesto hecho con Margo, la app de precios para repostería:",limitTitle:"Llegaste a 5 productos 🎉",limitText:"El plan gratis guarda hasta 5 productos. Hazte fundadora para tener productos ilimitados y presupuestos con el nombre de tu negocio, con precio congelado para siempre.",limitCta:"Quiero ser fundadora",later:"Ahora no",planFree:"Plan gratis: hasta 5 productos",planPro:"Plan Fundadora activo ✓",seePlans:"Ver plan Fundadora",tagline:"Sabe cuánto cobrar en 5 minutos",beta:"Versión beta gratuita. Tus datos se guardan solo en este dispositivo.",localNote:"datos guardados en este dispositivo",
   tabProducts:"Productos",tabIngredients:"Ingredientes",tabQuote:"Presupuesto",tabSettings:"Ajustes",
   productsTitle:"Tus productos",productsSub:"Cada producto muestra el costo real y el precio que deberías cobrar.",newProduct:"Nuevo producto",
   ingredientsTitle:"Ingredientes y empaques",ingredientsSub:"Registra lo que compras y cuánto pagaste. Margo calcula el costo de cada gramo.",newIngredient:"Nuevo ingrediente",
@@ -162,7 +162,7 @@ const I18N = {
   copied:"¡Copiado!",saved:"¡Guardado!",deleted:"Eliminado",confirmDelete:"¿Eliminar de verdad?",yes:"Sí, eliminar",no:"No",needProducts:"Crea un producto antes de armar un presupuesto.",
   restoreOk:"¡Respaldo restaurado!",restoreBad:"Respaldo inválido.",confirmReset:"¿Borrar todos los datos de este dispositivo?",exampleLoaded:"¡Ejemplo cargado!",
   required:"Completa el nombre.",units:{g:"g",kg:"kg",ml:"ml",l:"L",un:"u"},each:"c/u",copyFail:"No se pudo copiar. Selecciona el texto y cópialo manualmente."},
- en:{tagline:"Know what to charge in 5 minutes",beta:"Free beta. Your data is saved only on this device.",localNote:"data saved on this device",
+ en:{proFoot:"Quote made with Margo, the pricing app for bakers:",limitTitle:"You've reached 5 products 🎉",limitText:"The free plan keeps up to 5 products. Become a founding member for unlimited products and quotes with your bakery's name, at a price locked for good.",limitCta:"Become a founding member",later:"Not now",planFree:"Free plan: up to 5 products",planPro:"Founding Member active ✓",seePlans:"See Founding Member plan",tagline:"Know what to charge in 5 minutes",beta:"Free beta. Your data is saved only on this device.",localNote:"data saved on this device",
   tabProducts:"Products",tabIngredients:"Ingredients",tabQuote:"Quote",tabSettings:"Settings",
   productsTitle:"Your products",productsSub:"Each product shows its real cost and the price you should charge.",newProduct:"New product",
   ingredientsTitle:"Ingredients & packaging",ingredientsSub:"Add what you buy and what you paid. Margo works out the cost of every gram.",newIngredient:"New ingredient",
@@ -206,6 +206,17 @@ const num=v=>{const n=parseFloat(String(v).replace(",","."));return isFinite(n)?
 const money=v=>{try{return new Intl.NumberFormat(LOCALE[S.lang],{style:"currency",currency:S.settings.currency}).format(v||0);}catch(e){return (v||0).toFixed(2);}};
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 
+/* ===================== plan ===================== */
+const FREE_LIMIT=5;
+const SITE="https://rodv198784-netizen.github.io/margo/";
+function isPro(){try{return !!localStorage.getItem("margo.pro");}catch(e){return false;}}
+function plansUrl(){return "../?lang="+S.lang+"#planos";}
+function upsell(){
+  openModal(`<div class="sheet-head"><h2 style="margin:0">${t("limitTitle")}</h2><button class="close" id="cl">×</button></div>
+   <p class="sub">${t("limitText")}</p>
+   <div class="actions"><a class="btn" href="${plansUrl()}" target="_top">${t("limitCta")}</a><button class="btn quiet" id="ln">${t("later")}</button></div>`);
+  document.getElementById("cl").onclick=closeModal;document.getElementById("ln").onclick=closeModal;
+}
 /* ===================== units & math ===================== */
 // base units: mass -> g, volume -> ml, count -> un
 const BASE={g:["g",1],kg:["g",1000],ml:["ml",1],l:["ml",1000],un:["un",1]};
@@ -278,7 +289,7 @@ function viewProducts(){
    <div class="list">${items||`<div class="card empty">${t("noProducts")}</div>`}</div>
    <div class="actions" style="margin-top:14px"><button class="btn" id="np">${t("newProduct")}</button>${S.products.length?"":`<button class="btn ghost" id="ex">${t("loadExample")}</button>`}</div>`;
   v.querySelectorAll(".item").forEach(b=>b.onclick=()=>editProduct(b.dataset.id));
-  document.getElementById("np").onclick=()=>editProduct(null);
+  document.getElementById("np").onclick=()=>{if(!isPro()&&S.products.length>=FREE_LIMIT){upsell();return;}editProduct(null);};
   const ex=document.getElementById("ex");if(ex)ex.onclick=loadExample;
 }
 function editProduct(id){
@@ -409,6 +420,7 @@ function quoteText(){
   if(q.deadline){let d=q.deadline;try{d=new Date(q.deadline+"T12:00:00").toLocaleDateString(LOCALE[S.lang]);}catch(e){}L.push(`${t("deadline")}: ${d}`);}
   if(q.notes)L.push(`${t("notes")}: ${q.notes}`);
   L.push("");L.push(t("quoteValid"));L.push(t("quoteThanks"));
+  if(!isPro()){L.push("");L.push("—");L.push(t("proFoot")+" "+SITE+(S.lang==="pt"?"":"?lang="+S.lang));}
   return {text:L.join("\n"),total:sub+del-dis};
 }
 function viewQuote(){
@@ -456,6 +468,7 @@ function viewSettings(){
      <div class="field"><label>${t("hoursMonth")}</label><input inputmode="decimal" id="shm" value="${esc(st.hours)}"></div></div>
     <p class="hint">${t("fixedHint")}</p>
    </div>
+   <div class="card"><h3>${isPro()?t("planPro"):t("planFree")}</h3>${isPro()?"":`<a class="btn ghost sm" href="${plansUrl()}" target="_top">${t("seePlans")}</a>`}</div>
    <div class="card"><h3>${t("backup")}</h3><p class="sub">${t("backupSub")}</p>
     <div class="actions"><button class="btn quiet" id="bk">${t("copyBackup")}</button><button class="btn quiet" id="rs">${t("restore")}</button><button class="btn danger" id="rz">${t("resetAll")}</button></div>
    </div>`;
