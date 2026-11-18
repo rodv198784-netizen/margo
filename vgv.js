@@ -13,7 +13,7 @@ function send(){if(sent)return;sent=true;var b=JSON.stringify({ev:E,sec:Math.rou
 try{navigator.sendBeacon("/margo/api/ev",new Blob([b],{type:"application/json"}));}catch(x){}}
 addEventListener("pagehide",send);document.addEventListener("visibilitychange",function(){if(document.visibilityState==="hidden")send();});
 /* popup s\u00f3 em p\u00e1ginas de produto */
-if(!/^\/(products|vgv-tools|make-money)/.test(P))return;
+if(!/^\/(products|vgv-tools|make-money|margo\/pt\/)/.test(P))return;
 var TX={pt:["ESPERA A\u00cd!","Ganhe 10% de desconto","Deixe seu e-mail e libere o cupom agora.","seu@email.com","Quero meu desconto","Sem spam. Cancele quando quiser.","Seu cupom est\u00e1 liberado \ud83c\udf89","Use o c\u00f3digo no pagamento:","Usar meu desconto"],
 es:["\u00a1ESPERA!","Obt\u00e9n 10% de descuento","Deja tu correo y desbloquea el cup\u00f3n ahora.","tu@email.com","Quiero mi descuento","Sin spam. Cancela cuando quieras.","Tu cup\u00f3n est\u00e1 listo \ud83c\udf89","Usa el c\u00f3digo en el pago:","Usar mi descuento"],
 en:["WAIT!","Get 10% off","Leave your email to unlock the coupon now.","you@email.com","Get my discount","No spam. Unsubscribe anytime.","Your coupon is unlocked \ud83c\udf89","Use this code at checkout:","Use my discount"],
