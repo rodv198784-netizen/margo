@@ -12,6 +12,10 @@ if(/pay\.hotmart|buy\.stripe|payhip|gumroad/.test(h)){ev("click_buy");left=true;
 function send(){if(sent)return;sent=true;var b=JSON.stringify({ev:E,sec:Math.round((Date.now()-t0)/1000),path:P.slice(0,80),ref:document.referrer.slice(0,120),utm:(Q.get("utm_source")||Q.get("ttclid")&&"tiktok"||Q.get("fbclid")&&"facebook"||"")+"/"+(Q.get("utm_campaign")||""),lang:lang,tz:(Intl.DateTimeFormat().resolvedOptions().timeZone||""),w:innerWidth});
 try{navigator.sendBeacon("/margo/api/ev",new Blob([b],{type:"application/json"}));}catch(x){}}
 addEventListener("pagehide",send);document.addEventListener("visibilitychange",function(){if(document.visibilityState==="hidden")send();});
+/* precos em reais nas paginas em portugues com oferta Brasil */
+var BRL={"/products/post-writing-prompts/pt/":"R$ 49,90"};
+if(BRL[P]){var fixp=function(){var w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT),n;while(n=w.nextNode()){if(/USD\s?9(?![\d.,])/.test(n.nodeValue))n.nodeValue=n.nodeValue.replace(/USD\s?9(?![\d.,])/g,BRL[P]);}};
+if(document.body)fixp();addEventListener("DOMContentLoaded",fixp);try{new MutationObserver(fixp).observe(document.documentElement,{childList:true,subtree:true,characterData:true});}catch(e){}}
 /* popup s\u00f3 em p\u00e1ginas de produto */
 if(!/^\/(products|vgv-tools|make-money|margo\/pt\/)/.test(P))return;
 var TX={pt:["BLACK FRIDAY \u00b7 10% OFF","Chegou, ganhou: 10% de desconto","Deixe seu e-mail e libere o cupom agora.","seu@email.com","Quero meu desconto","Sem spam. Cancele quando quiser.","Seu cupom est\u00e1 liberado \ud83c\udf89","Use o c\u00f3digo no pagamento:","Usar meu desconto"],
