@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Margo — Procuramos 50 confeiteiras para testar grátis</title>
+<title>Você foi convidada para testar o Margo</title>
 <meta name="robots" content="noindex">
 <meta name="description" content="Teste o Margo, app de preço e orçamento para confeitaria, grátis por 3 meses. Sem cartão.">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
@@ -35,6 +35,9 @@ small{display:block;color:#6F6460;margin-top:12px;text-align:center}
 <li>Use com pelo menos uma receita sua</li>
 <li>Depois de 7 dias, conte pra gente o que achou (texto, áudio ou vídeo curto)</li>
 <li>Se você autorizar, sua opinião pode aparecer no nosso site, com seu nome e o @ do seu negócio</li></ul></div>
-<a class="btn" href="https://buy.stripe.com/28EcMY1d3dcW5rs42q1oI03">Quero ser testadora</a>
-<small>A inscrição pede nome, e-mail e telefone para liberarmos o acesso e falarmos com você sobre o teste. Dúvidas: support@vglobalventures.com</small>
+<a class="btn" id="go" href="app/">Ativar meu teste grátis</a>
+<small>Não pedimos cadastro, cartão, senha nem pagamento. Um toque ativa os 3 meses neste celular e o app abre. Seus dados ficam só no seu aparelho. Dúvidas: support@vglobalventures.com</small>
+<script>
+document.getElementById("go").addEventListener("click",function(){try{var c=localStorage.getItem("margo.pro"),p=c?JSON.parse(c):null;if(!p||(p.until&&p.until<Date.now()+80*864e5)){localStorage.setItem("margo.pro",JSON.stringify({since:Date.now(),tester:true,until:Date.now()+90*864e5}));}localStorage.setItem("margo.tester","1");}catch(e){}});
+</script>
 </div></body></html>
