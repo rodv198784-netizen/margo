@@ -66,6 +66,7 @@ footer{padding:30px 0 90px;color:var(--muted);font-size:13.5px;border-top:1px so
 </style>
 </head>
 <body>
+<a id="testBanner" href="teste.html" style="display:none;background:#2A2220;color:#fff;text-decoration:none;text-align:center;padding:12px 16px;font:600 15px Inter,sans-serif">🎁 Procuramos 50 confeiteiras para testar o Margo grátis por 3 meses, sem cartão. <u>Quero testar →</u></a>
 <div class="w">
 <nav class="top">
   <a class="logo" href="#"><span class="mark">m</span>Margo</a>
@@ -249,6 +250,7 @@ function render(){
   ctaBuy.href=CONFIG.buyUrl[L];ctaBuy.target="_blank";ctaBuy.rel="noopener";
   if(!dirty)for(const k in DEF[L])document.getElementById(k).value=DEF[L][k];
   calc();
+  document.getElementById("testBanner").style.display=L==="pt"?"block":"none";
 }
 document.querySelectorAll(".lang button").forEach(b=>b.onclick=()=>{L=b.dataset.l;render();});
 ["cI","cY","cP","cM","cH","cN"].forEach(id=>document.getElementById(id).addEventListener("input",()=>{dirty=true;calc();}));

@@ -258,5 +258,46 @@
     "p": "<span style=\"font:700 40px Inter;color:#FDBA8C;word-break:break-all\">vglobalventures.com/margo/?lang=en</span>"
    }
   ]
+ },
+ {
+  "id": "pt-testadoras",
+  "lang": "pt",
+  "caption": "",
+  "slides": [
+   {
+    "kicker": "Convite · 50 vagas",
+    "h1": "Procuramos 50 confeiteiras para testar o Margo de graça"
+   },
+   {
+    "h2": "Você ganha",
+    "rows": [
+     [
+      "Plano completo por 3 meses",
+      "Grátis",
+      "ok"
+     ],
+     [
+      "Cartão de crédito",
+      "Não precisa"
+     ],
+     [
+      "Cobrança automática",
+      "Nenhuma"
+     ]
+    ],
+    "p": "O Margo calcula o custo real dos seus doces e monta o orçamento pro WhatsApp."
+   },
+   {
+    "h2": "Em troca",
+    "p": "Teste com uma receita sua e, depois de 7 dias, conte o que achou. Só isso."
+   },
+   {
+    "dark": true,
+    "kicker": "Inscrição",
+    "h2": "Garanta sua vaga",
+    "cta": "Link na bio ↑",
+    "p": "<span style=\"font:700 40px Inter;color:#FDBA8C\">vglobalventures.com/margo/teste</span>"
+   }
+  ]
  }
 ]
