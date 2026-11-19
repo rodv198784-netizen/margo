@@ -321,18 +321,18 @@ addEventListener("scroll",()=>{document.getElementById("sticky").classList.toggl
 <small style="display:block;color:#9A8F8B;margin-top:10px" id="mgS"></small></div>
 <div id="mgOk" style="display:none;text-align:center"><h3 style="margin:6px 0;font-size:24px" id="mgOkH"></h3>
 <div style="font-size:30px;font-weight:800;letter-spacing:.08em;border:2px dashed #C2410C;border-radius:12px;padding:12px;margin:14px 0;color:#C2410C">BLACK10</div>
-<a id="mgGo" style="display:block;background:#C2410C;color:#fff;text-decoration:none;font-weight:700;border-radius:12px;padding:15px" target="_blank" rel="noopener"></a></div>
+<button id="mgCp" type="button" style="width:100%;background:#C2410C;color:#fff;border:0;border-radius:12px;padding:15px;font:inherit;font-weight:700;cursor:pointer"></button><button id="mgCt" type="button" style="width:100%;margin-top:8px;background:#fff;border:1px solid #EADFD6;border-radius:12px;padding:14px;font:inherit;font-weight:700;cursor:pointer"></button><a id="mgGo" style="display:block;margin-top:12px;font-size:14px;color:#6F6460"></a></div>
 </div></div>
 <script>
 (function(){
-const TX={pt:{k:"BLACK FRIDAY · 10% OFF",h:"Chegou, ganhou: 10% no plano Fundadora",p:"Deixe seu e-mail e libere seu cupom agora. Também te mandamos dicas de precificação.",ph:"seu@email.com",b:"Quero meu desconto",s:"Sem spam. Cancele quando quiser.",ok:"Seu cupom está liberado 🎉",go:"Usar meu desconto"},
-es:{k:"BLACK FRIDAY · 10% OFF",h:"Llegaste, ganaste: 10% en el plan Fundadora",p:"Deja tu correo y desbloquea el cupón ahora. También te enviamos consejos para poner precios.",ph:"tu@email.com",b:"Quiero mi descuento",s:"Sin spam. Cancela cuando quieras.",ok:"Tu cupón está listo 🎉",go:"Usar mi descuento"},
-en:{k:"BLACK FRIDAY · 10% OFF",h:"Welcome gift: 10% off the Founding plan",p:"Leave your email to unlock the coupon now. We'll also send you pricing tips.",ph:"you@email.com",b:"Get my discount",s:"No spam. Unsubscribe anytime.",ok:"Your coupon is unlocked 🎉",go:"Use my discount"}};
+const TX={pt:{k:"BLACK FRIDAY · 10% OFF",h:"Chegou, ganhou: 10% no plano Fundadora",p:"Deixe seu e-mail e libere seu cupom agora. Também te mandamos dicas de precificação.",ph:"seu@email.com",b:"Quero meu desconto",s:"Sem spam. Cancele quando quiser.",ok:"Seu cupom está liberado 🎉",go:"Ir direto para o pagamento",cp:"Copiar código",cpd:"Copiado!",ct:"Continuar conhecendo o Margo"},
+es:{k:"BLACK FRIDAY · 10% OFF",h:"Llegaste, ganaste: 10% en el plan Fundadora",p:"Deja tu correo y desbloquea el cupón ahora. También te enviamos consejos para poner precios.",ph:"tu@email.com",b:"Quiero mi descuento",s:"Sin spam. Cancela cuando quieras.",ok:"Tu cupón está listo 🎉",go:"Ir directo al pago",cp:"Copiar código",cpd:"¡Copiado!",ct:"Seguir conociendo Margo"},
+en:{k:"BLACK FRIDAY · 10% OFF",h:"Welcome gift: 10% off the Founding plan",p:"Leave your email to unlock the coupon now. We'll also send you pricing tips.",ph:"you@email.com",b:"Get my discount",s:"No spam. Unsubscribe anytime.",ok:"Your coupon is unlocked 🎉",go:"Go straight to checkout",cp:"Copy code",cpd:"Copied!",ct:"Keep exploring Margo"}};
 const KEY="margo.pop",pop=document.getElementById("mgPop");let shown=false;
 function seen(){try{const v=+localStorage.getItem(KEY)||0;return Date.now()-v<7*864e5||localStorage.getItem("margo.lead")||localStorage.getItem("margo.pro");}catch(e){return false;}}
 function lang(){return (typeof L!=="undefined"&&TX[L])?L:"pt";}
 function show(){if(shown||seen())return;shown=true;const t=TX[lang()];
- mgK.textContent=t.k;mgH.textContent=t.h;mgP.textContent=t.p;mgE.placeholder=t.ph;mgB.textContent=t.b;mgS.textContent=t.s;mgOkH.textContent=t.ok;mgGo.textContent=t.go;
+ mgK.textContent=t.k;mgH.textContent=t.h;mgP.textContent=t.p;mgE.placeholder=t.ph;mgB.textContent=t.b;mgS.textContent=t.s;mgOkH.textContent=t.ok;mgGo.textContent=t.go;mgCp.textContent=t.cp;mgCt.textContent=t.ct;mgCp.onclick=()=>{try{navigator.clipboard.writeText("BLACK10")}catch(e){}mgCp.textContent=t.cpd;setTimeout(hide,900)};mgCt.onclick=hide;
  pop.style.display="flex";try{localStorage.setItem(KEY,Date.now());}catch(e){}}
 function hide(){pop.style.display="none";}
 mgX.onclick=hide;pop.onclick=e=>{if(e.target===pop)hide();};
@@ -342,6 +342,7 @@ mgF.onsubmit=async e=>{e.preventDefault();const em=mgE.value.trim(),l=lang();mgB
  const base=(typeof CONFIG!=="undefined"&&CONFIG.buyUrl[l])||CONFIG.buyUrl.pt;
  mgGo.href=base+"?prefilled_promo_code=BLACK10&prefilled_email="+encodeURIComponent(em);
  mgA.style.display="none";mgOk.style.display="block";};
+document.addEventListener("click",e=>{let lead;try{lead=localStorage.getItem("margo.lead")}catch(x){}if(!lead)return;const a=e.target.closest&&e.target.closest("a[href]");if(a&&/buy\.stripe\.com/.test(a.href)&&!/prefilled_promo_code/.test(a.href))a.href+=(a.href.includes("?")?"&":"?")+"prefilled_promo_code=BLACK10&prefilled_email="+encodeURIComponent(lead);},true);
 document.addEventListener("mouseout",e=>{if(!e.relatedTarget&&e.clientY<10)show();});
 setTimeout(show,3500);
 
