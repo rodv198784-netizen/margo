@@ -40,5 +40,9 @@ small{display:block;color:#6F6460;margin-top:12px;text-align:center}
 <small>Não pedimos cadastro, cartão, senha nem pagamento. Um toque ativa os 3 meses neste celular e o app abre. Seus dados ficam só no seu aparelho. Dúvidas: support@vglobalventures.com</small>
 <script>
 document.getElementById("go").addEventListener("click",function(){try{var c=localStorage.getItem("margo.pro"),p=c?JSON.parse(c):null;if(!p||(p.until&&p.until<Date.now()+80*864e5)){localStorage.setItem("margo.pro",JSON.stringify({since:Date.now(),tester:true,until:Date.now()+90*864e5}));}localStorage.setItem("margo.tester","1");}catch(e){}});
+(function(){var r=(new URLSearchParams(location.search).get("r")||"").replace(/[^a-zA-Z0-9._@-]/g,"").slice(0,40),E=["view"],t0=Date.now(),sent=false;
+document.getElementById("go").addEventListener("click",function(){E.push("trial_activate");send();});
+function send(){if(sent)return;sent=true;try{navigator.sendBeacon("/margo/api/ev",new Blob([JSON.stringify({ev:E,sec:Math.round((Date.now()-t0)/1000),path:"/margo/teste",utm:"outreach/"+r,lang:"pt",tz:(Intl.DateTimeFormat().resolvedOptions().timeZone||""),w:innerWidth})],{type:"application/json"}));}catch(x){}}
+addEventListener("pagehide",send);})();
 </script>
 </div></body></html>
