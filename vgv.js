@@ -13,9 +13,11 @@ function send(){if(sent)return;sent=true;var b=JSON.stringify({ev:E,sec:Math.rou
 try{navigator.sendBeacon("/margo/api/ev",new Blob([b],{type:"application/json"}));}catch(x){}}
 addEventListener("pagehide",send);document.addEventListener("visibilitychange",function(){if(document.visibilityState==="hidden")send();});
 /* precos em reais nas paginas em portugues com oferta Brasil */
-var BRL={"/products/post-writing-prompts/pt/":"R$ 49,90"};
-if(BRL[P]){var fixp=function(){document.querySelectorAll('a[href*="pay.hotmart.com/J108256050E"]').forEach(function(a){if(!/off=/.test(a.href))a.href=a.href.replace("J108256050E?","J108256050E?off=tzrycbr9&").replace(/J108256050E$/,"J108256050E?off=tzrycbr9");});var w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT),n;while(n=w.nextNode()){if(/USD\s?9(?![\d.,])/.test(n.nodeValue))n.nodeValue=n.nodeValue.replace(/USD\s?9(?![\d.,])/g,BRL[P]);}};
-if(document.body)fixp();addEventListener("DOMContentLoaded",fixp);try{new MutationObserver(fixp).observe(document.documentElement,{childList:true,subtree:true,characterData:true});}catch(e){}}
+var OFF={J108256050E:["tzrycbr9","9","R$ 49,90"],L108260967I:["z7lb1dnv","7","R$ 38,90"],M108260909U:["6iue6f8b","9","R$ 49,90"],D108260992T:["xxwcsslb","5","R$ 27,90"],X108260811L:["gh3mnzot","12","R$ 66,90"],C108259394A:["qb4pg4tn","9","R$ 49,90"]};
+if(lang==="pt"){var fixp=function(){var ids={};document.querySelectorAll('a[href*="pay.hotmart.com/"]').forEach(function(a){var m=a.href.match(/pay\.hotmart\.com\/([A-Z0-9]+)/);if(!m||!OFF[m[1]])return;ids[m[1]]=1;if(!/[?&]off=/.test(a.href)){var u=a.href.split("?");a.href=u[0]+"?off="+OFF[m[1]][0]+(u[1]?"&"+u[1]:"");}});
+var k=Object.keys(ids);if(k.length!==1)return;var o=OFF[k[0]],re=new RegExp("(USD|US\\$)\\s?"+o[1]+"(?![\\d.,])","g");
+var w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT),n;while(n=w.nextNode()){if(re.test(n.nodeValue)){re.lastIndex=0;n.nodeValue=n.nodeValue.replace(re,o[2]);}re.lastIndex=0;}};
+if(document.body)fixp();addEventListener("DOMContentLoaded",fixp);addEventListener("load",fixp);try{new MutationObserver(function(){clearTimeout(window.__vgvT);window.__vgvT=setTimeout(fixp,50);}).observe(document.documentElement,{childList:true,subtree:true,characterData:true,attributes:true,attributeFilter:["href"]});}catch(e){}}
 /* popup s\u00f3 em p\u00e1ginas de produto */
 if(!/^\/(products|vgv-tools|make-money|margo\/pt\/)/.test(P))return;
 var TX={pt:["BLACK FRIDAY \u00b7 10% OFF","Chegou, ganhou: 10% de desconto","Deixe seu e-mail e libere o cupom agora.","seu@email.com","Quero meu desconto","Sem spam. Cancele quando quiser.","Seu cupom est\u00e1 liberado \ud83c\udf89","Use o c\u00f3digo no pagamento:","Ir direto para o pagamento","Copiar c\u00f3digo","Copiado!","Continuar vendo o produto","Cupom BLACK10 ativado: 10% off j\u00e1 aplicado no pagamento"],
