@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script>if(/github\.io$/.test(location.hostname))location.replace("https://vglobalventures.com"+location.pathname+location.search+location.hash)</script>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How much to charge for cupcakes? Free cupcake pricing calculator</title>
+<meta name="description" content="Find the right price for your cupcakes with every cost included: cake, frosting, liners, boxes and your time.">
+<link rel="canonical" href="https://vglobalventures.com/margo/en/cupcake-pricing-calculator/">
+<meta property="og:title" content="How much to charge for cupcakes? Free cupcake pricing calculator"><meta property="og:description" content="Find the right price for your cupcakes with every cost included: cake, frosting, liners, boxes and your time.">
+<style>
+body{margin:0;background:#FBF7F2;color:#2A2220;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.55}
+.w{max-width:640px;margin:0 auto;padding:24px 18px 60px}
+a{color:#C2410C}.logo{font:700 20px Georgia,serif;text-decoration:none;color:#2A2220;display:inline-flex;gap:8px;align-items:center}
+.m{width:30px;height:30px;border-radius:8px;background:#C2410C;color:#fff;display:grid;place-items:center}
+h1{font:700 clamp(28px,6vw,40px)/1.1 Georgia,serif;margin:20px 0 10px}
+.lead{color:#6F6460;font-size:18px}
+.card{background:#fff;border:1px solid #EADFD6;border-radius:16px;padding:18px;margin:20px 0}
+.r{display:flex;gap:8px;margin:6px 0}.r .n{flex:1}.r .v{width:96px}
+input{font:inherit;padding:10px;border:1px solid #EADFD6;border-radius:10px;min-width:0}
+label{display:block;font-weight:600;margin:12px 0 4px}
+.g{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+button{font:inherit;background:none;border:1px dashed #C2410C;color:#C2410C;border-radius:10px;padding:8px 12px;margin-top:6px}
+.out{background:#FDEBDD;border-radius:14px;padding:16px;margin-top:16px}
+.out b{font-size:26px;display:block}
+.cta{display:block;text-align:center;background:#C2410C;color:#fff;text-decoration:none;font-weight:700;border-radius:14px;padding:16px;margin:22px 0}
+small{color:#6F6460}
+</style></head><body><div class="w">
+<a class="logo" href="/margo/"><span class="m">m</span>Margo</a>
+<h1>How much to charge for cupcakes</h1>
+<p class="lead">Find the right price for your cupcakes with every cost included: cake, frosting, liners, boxes and your time.</p>
+<div class="card">
+<b>Recipe costs ($)</b> <small>example values: replace with yours</small>
+<div id="items"><div class="r"><input class="n" value="Cake ingredients"><input class="v" type="number" step="0.01" value="6"></div><div class="r"><input class="n" value="Frosting"><input class="v" type="number" step="0.01" value="5"></div><div class="r"><input class="n" value="Liners and toppers"><input class="v" type="number" step="0.01" value="2"></div><div class="r"><input class="n" value="Boxes"><input class="v" type="number" step="0.01" value="4"></div></div>
+<button type="button" id="add">+ add item</button>
+<div class="g">
+<div><label>cupcakes per batch</label><input id="y" type="number" value="12"></div>
+<div><label>Hours of work</label><input id="h" type="number" step="0.5" value="2"></div>
+<div><label>Your hourly rate ($)</label><input id="vh" type="number" value="20"></div>
+<div><label>Profit margin (%)</label><input id="mg" type="number" value="40"></div>
+</div>
+<div class="out" id="out"></div>
+</div>
+<p>Frosting and boxes are where cupcake margins disappear. Price per cupcake first, then check the dozen price still pays for your time.</p>
+<p><small>How we calculate: total cost = ingredients and packaging + hours × your hourly rate. Price = cost ÷ (1 − margin), so the margin is on the selling price, which is the real profit you keep.</small></p>
+<a class="cta" href="/margo/?lang=en&utm_source=seo&utm_medium=calc&utm_campaign=cupcake-pricing-calculator">Save recipes and build quotes in Margo (free)</a>
+<h3>More calculators</h3><ul><li><a href="../cookie-pricing-calculator/">How much to charge for cookies</a></li><li><a href="../cupcake-pricing-calculator/">How much to charge for cupcakes</a></li><li><a href="../cake-pricing-calculator/">How much to charge for a cake</a></li></ul>
+</div>
+<script src="/margo/vgv.js" defer></script>
+<script>
+const $=s=>document.querySelector(s),f=n=>n.toLocaleString("en-US",{style:"currency",currency:"USD"});
+function calc(){let c=0;document.querySelectorAll("#items .v").forEach(i=>c+=+i.value||0);
+const y=Math.max(+$("#y").value||1,0.01),lab=(+$("#h").value||0)*(+$("#vh").value||0),m=Math.min(+$("#mg").value||0,95)/100,t=c+lab,u=t/y,p=Math.ceil(u/(1-m)*100)/100;
+$("#out").innerHTML=`Cost per cupcake: ${f(u)}<br>Suggested price per cupcake<b>${f(p)}</b>`+(y>=12?`Per dozen: <b style="font-size:20px;display:inline">${f(p*12)}</b><br>`:"")+`Profit per cupcake: ${f(p-u)}`;}
+document.addEventListener("input",calc);
+$("#add").onclick=()=>{const d=document.createElement("div");d.className="r";d.innerHTML='<input class="n" placeholder="Item"><input class="v" type="number" step="0.01" value="0">';$("#items").appendChild(d);};
+calc();
+</script></body></html>
